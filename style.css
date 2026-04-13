@@ -98,3 +98,16 @@ h2 {
     font-size: 22px;
   }
 }
+/* ===== NEW PREMIUM TEXT STYLE ===== */
+
+h3 {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.card p {
+  color: #cccccc;
+  font-size: 14px;
+  margin-top: 5px;
+}
