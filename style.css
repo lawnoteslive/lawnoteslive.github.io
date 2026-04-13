@@ -1,51 +1,14 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
+function buyNote(id) {
 
-body {
-  background: linear-gradient(135deg, #0f172a, #020617);
-  color: #e2e8f0;
-}
+  // Open UPI
+  window.location.href = "upi://pay?pa=ammu00@ptaxis&pn=LawNotes&am=49&cu=INR";
 
-/* NAVBAR */
-.navbar {
-  padding: 15px;
-  text-align: center;
-  background: rgba(255,255,255,0.05);
-}
+  // Message
+  document.getElementById("status-" + id).innerText =
+    "After payment wait 5 seconds";
 
-/* HEADER */
-header {
-  text-align: center;
-  padding: 25px;
-}
-
-/* SECTION */
-section {
-  padding: 20px;
-  max-width: 900px;
-  margin: auto;
-}
-
-/* CARD */
-.card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  margin: 15px 0;
-  border-radius: 12px;
-}
-
-/* BUTTON */
-button {
-  margin-top: 10px;
-  padding: 10px 15px;
-  border: none;
-  background: #3b82f6;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-}  box-shadow: 0 5px 20px rgba(59,130,246,0.6);
-}
+  // Unlock
+  setTimeout(() => {
+    document.getElementById("download-" + id).style.display = "block";
+  }, 5000);
+    }
