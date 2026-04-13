@@ -1,21 +1,14 @@
-function buyNote() {
+function buyNote(id) {
 
-  // 🔴 Your UPI ID (already added)
-  let upi = "ammu00@ptaxis";
+  // Open UPI app
+  window.location.href = "upi://pay?pa=ammu00@ptaxis&pn=LawNotes&am=49&cu=INR";
 
-  let amount = "49";
-  let name = "LawNotes Live";
+  // Show message
+  document.getElementById("status-" + id).innerText =
+    "After payment, wait 5 seconds and download";
 
-  // 💳 UPI payment link
-  let url = `upi://pay?pa=${upi}&pn=${name}&am=${amount}&cu=INR`;
-
-  // 📱 Open payment app
-  window.location.href = url;
-
-  // 💬 Message after clicking
-  document.getElementById("unlockMsg").innerText =
-    "✅ After payment, send screenshot on WhatsApp to get access";
-
-  // 🔓 Unlock download (temporary demo)
-  document.getElementById("downloadLink").style.display = "block";
+  // Unlock download after delay
+  setTimeout(() => {
+    document.getElementById("download-" + id).style.display = "block";
+  }, 5000);
 }
