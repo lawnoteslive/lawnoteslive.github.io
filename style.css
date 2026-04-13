@@ -111,3 +111,29 @@ h3 {
   font-size: 14px;
   margin-top: 5px;
 }
+
+/* EXTRA PREMIUM TOUCH */
+
+.navbar h2 {
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #38bdf8;
+}
+
+/* Smooth animation */
+.card {
+  transition: all 0.3s ease;
+}
+
+/* Glow effect on hover */
+.card:hover {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Button glow */
+button:hover {
+  box-shadow: 0 5px 20px rgba(59,130,246,0.6);
+}
