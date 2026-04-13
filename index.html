@@ -1,45 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>LawNotes Live</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<header>
-  <h1>LawNotes Live</h1>
-  <p>Smart Legal Notes • Case Laws • Daily Updates</p>
-</header>
-
 <section>
   <h2>📚 Notes</h2>
 
+  <!-- BA LLB -->
   <div class="card">
-    <h3>Constitution Notes</h3>
-    <p>BA LLB / LLB / LLM</p>
+    <h3>🎓 BA LL.B (5 Years)</h3>
+    <p>All semester notes available</p>
 
     <button onclick="buyNote()">Buy for ₹49</button>
 
     <p id="unlockMsg"></p>
 
-    <a id="downloadLink" href="notes/constitution.pdf" style="display:none;">
+    <a id="downloadLink" href="ba-llb/constitution.pdf" style="display:none;">
       Download Now
     </a>
   </div>
-</section>
 
-<section>
-  <h2>📰 Legal News</h2>
-
+  <!-- LLB -->
   <div class="card">
-    <img src="news1.jpg">
-    <h3>Supreme Court New Judgment</h3>
-    <p>Latest legal update will appear here</p>
+    <h3>📘 LL.B (3 Years)</h3>
+    <p>Core law subjects</p>
+
+    <button onclick="buyNote()">Buy for ₹49</button>
+
+    <a href="llb/contracts.pdf" style="display:none;" id="downloadLink2">
+      Download Now
+    </a>
   </div>
+
+  <!-- LLM -->
+  <div class="card">
+    <h3>⚖️ LL.M (2 Years)</h3>
+    <p>Advanced law subjects</p>
+
+    <button onclick="buyNote()">Buy for ₹49</button>
+
+    <a href="llm/international-law.pdf" style="display:none;" id="downloadLink3">
+      Download Now
+    </a>
+  </div>
+
 </section>
-
-<script src="script.js"></script>
-
-</body>
-</html>
