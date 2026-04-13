@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,60 +8,68 @@
 
 <body>
 
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h2>⚖️ LawNotes Live</h2>
+</nav>
+
+<!-- HEADER -->
 <header>
   <h1>LawNotes Live</h1>
-  <p>Smart Legal Notes • Case Laws • Daily Updates</p>
+  <p>BA LL.B Notes • Updated Laws (BNS, BNSS, BSA)</p>
 </header>
 
+<!-- NOTES -->
 <section>
-  <h2>📚 Notes</h2>
+  <h2>📚 BA LL.B Notes (Semester-wise)</h2>
 
-  <!-- BA LLB -->
+  <!-- SEM 3 (ONLY WORKING NOW) -->
+  <h3>Semester 3</h3>
   <div class="card">
-    <h3>🎓 BA LL.B (5 Years)</h3>
-    <p>All semester notes available</p>
+    <h4>Constitutional Law</h4>
+    <p>Price ₹49</p>
 
-    <button onclick="buyNote()">Buy for ₹49</button>
-    <p id="unlockMsg"></p>
+    <button onclick="buyNote('constitution')">Buy Now</button>
+    <p id="status-constitution"></p>
 
-    <a id="downloadLink" href="ba-llb/constitution.pdf" style="display:none;">
-      Download Now
+    <a id="download-constitution" href="ba-llb/sem3/constitution.pdf" style="display:none;">
+      Download
     </a>
   </div>
 
-  <!-- LLB -->
+  <!-- FUTURE (ADD LATER) -->
+  <h3>Semester 2 (BNS)</h3>
   <div class="card">
-    <h3>📘 LL.B (3 Years)</h3>
-    <p>Core law subjects</p>
-
-    <button onclick="buyNote()">Buy for ₹49</button>
-
-    <a id="downloadLink2" href="llb/contracts.pdf" style="display:none;">
-      Download Now
-    </a>
+    <h4>BNS</h4>
+    <p>Coming Soon</p>
   </div>
 
-  <!-- LLM -->
+  <h3>Semester 6 (BNSS)</h3>
   <div class="card">
-    <h3>⚖️ LL.M (2 Years)</h3>
-    <p>Advanced law subjects</p>
+    <h4>BNSS</h4>
+    <p>Coming Soon</p>
+  </div>
 
-    <button onclick="buyNote()">Buy for ₹49</button>
-
-    <a id="downloadLink3" href="llm/international-law.pdf" style="display:none;">
-      Download Now
-    </a>
+  <h3>Semester 7 (BSA)</h3>
+  <div class="card">
+    <h4>BSA</h4>
+    <p>Coming Soon</p>
   </div>
 
 </section>
 
+<!-- PAYMENT -->
 <section>
-  <h2>📰 Legal News</h2>
-
+  <h2>💳 Payment</h2>
   <div class="card">
-    <img src="news1.jpg">
-    <h3>Supreme Court New Judgment</h3>
-    <p>Latest legal update will appear here</p>
+    <p>Pay ₹49 via UPI:</p>
+    <b>ammu00@ptaxis</b>
+
+    <br><br>
+
+    <a href="https://wa.me/9193639572268" target="_blank">
+      <button>Send Screenshot</button>
+    </a>
   </div>
 </section>
 
@@ -68,9 +77,3 @@
 
 </body>
 </html>
-<p style="color: #22c55e;">
-  💳 Pay ₹49 via UPI to unlock this note
-</p>
-<a href="https://wa.me/+639517226859" target="_blank">
-  📱 Send Payment Screenshot
-</a>
