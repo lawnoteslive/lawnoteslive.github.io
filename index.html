@@ -4,326 +4,318 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LawNotes Live • KSLU BA LL.B Premium Notes</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <style>
-    body { font-family: 'Inter', system-ui, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); }
-    .hero-bg { background: linear-gradient(rgba(30, 58, 138, 0.95), rgba(30, 58, 138, 0.95)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover; }
-    h1, h2, h3 { font-family: 'Playfair Display', serif; }
-    .card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    .card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px -12px rgb(30 58 138 / 0.4); }
+    :root {
+      --primary: #2563eb;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+    .navbar {
+      background: #1e2937;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .support-btn {
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px 30px;
+      background: linear-gradient(to bottom, #1e2937, #0f172a);
+    }
+    header h1 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: #94a3b8;
+      font-size: 18px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 30px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #1e2937;
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid #334155;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .card.coming {
+      opacity: 0.85;
+    }
+    .card.available {
+      border: 2px solid #10b981;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    }
+    .card img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 16px;
+    }
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: white;
+    }
+    .status {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    /* Old Download Button Style */
+    .download-btn {
+      background: var(--primary);
+      color: white;
+    }
+    .download-btn:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+    }
+
+    /* WhatsApp Button */
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .whatsapp-btn:hover {
+      background: #20ba5a;
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    /* Share Button */
+    .share-btn {
+      background: #64748b;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .share-btn:hover {
+      background: #475569;
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px 20px;
+      color: #64748b;
+      font-size: 14px;
+    }
+    .final-support {
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
   </style>
 </head>
-<body class="text-slate-800">
+<body>
 
   <!-- Navbar -->
-  <nav class="bg-white/95 backdrop-blur shadow sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-      <div class="flex items-center gap-4">
-        <span class="text-4xl">⚖️</span>
-        <div>
-          <h1 class="text-2xl font-bold tracking-tight">LawNotes Live</h1>
-          <p class="text-xs text-slate-500">Karnataka State Law University</p>
-        </div>
-      </div>
-      <a href="https://wa.me/+6369572268" target="_blank" class="bg-emerald-600 text-white px-6 py-3 rounded-2xl font-semibold flex items-center gap-2 hover:bg-emerald-700">
-        <i class="fab fa-whatsapp"></i> Support
-      </a>
+  <div class="navbar">
+    <div class="logo">
+      ⚖️ LawNotes Live
     </div>
-  </nav>
+    <button class="support-btn">Support</button>
+  </div>
 
-  <!-- Hero -->
-  <header class="hero-bg text-white py-24 text-center">
-    <div class="max-w-4xl mx-auto px-6">
-      <h1 class="text-6xl font-bold mb-4">KSLU BA LL.B</h1>
-      <p class="text-2xl font-light">Premium Notes Collection</p>
-      <p class="mt-6 text-lg opacity-90">Semester-wise • Updated with BNS, BNSS & BSA</p>
-    </div>
+  <!-- Header -->
+  <header>
+    <h1>KSLU BA LL.B</h1>
+    <p>Premium Notes Collection</p>
+    <p style="margin-top:10px; font-size:16px;">Semester-wise • Updated with BNS, BNSS & BSA</p>
   </header>
 
-  <!-- Main Content Area -->
-  <div id="mainContent" class="max-w-6xl mx-auto px-6 py-20">
-    <h2 class="text-4xl font-bold text-center mb-4 text-slate-900">Select Your Semester</h2>
-    <p class="text-center text-slate-500 mb-12">5-Year Integrated BA LL.B Course</p>
+  <!-- Grid of Cards -->
+  <div class="grid">
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6" id="semesterGrid"></div>
+    <!-- Semester 1 -->
+    <div class="card coming">
+      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 1">
+      <h3>Semester 1</h3>
+      <p class="status">Coming Soon</p>
+      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
+      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
+    </div>
+
+    <!-- Semester 2 -->
+    <div class="card coming">
+      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 2">
+      <h3>Semester 2</h3>
+      <p class="status">Coming Soon</p>
+      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
+      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
+    </div>
+
+    <!-- Semester 3 - Available -->
+    <div class="card available">
+      <img src="https://via.placeholder.com/80x80/ff5722/ffffff?text=🔥" alt="Semester 3">
+      <h3>Semester 3</h3>
+      <p class="status">7 BNSS Notes Available</p>
+      <button class="download-btn" onclick="alert('Download feature coming soon!')">📥 Download Notes</button>
+      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
+      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
+    </div>
+
+    <!-- Semester 4 to 10 -->
+    <div class="card coming">
+      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 4">
+      <h3>Semester 4</h3>
+      <p class="status">Coming Soon</p>
+      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
+      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
+    </div>
+
+    <div class="card coming">
+      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 5">
+      <h3>Semester 5</h3>
+      <p class="status">Coming Soon</p>
+      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
+      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
+    </div>
+
+    <div class="card coming">
+      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 6">
+      <h3>Semester 6</h3>
+      <p class="status">Coming Soon</p>
+      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
+      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
+    </div>
+
+    <div class="card coming">
+      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 7">
+      <h3>Semester 7</h3>
+      <p class="status">Coming Soon</p>
+      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
+      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
+    </div>
+
+    <div class="card coming">
+      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 8">
+      <h3>Semester 8</h3>
+      <p class="status">Coming Soon</p>
+      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
+      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
+    </div>
+
+    <div class="card coming">
+      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 9">
+      <h3>Semester 9</h3>
+      <p class="status">Coming Soon</p>
+      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
+      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
+    </div>
+
+    <div class="card coming">
+      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 10">
+      <h3>Semester 10</h3>
+      <p class="status">Coming Soon</p>
+      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
+      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
+    </div>
+
   </div>
 
   <!-- Footer -->
-  <footer class="bg-slate-900 text-slate-400 py-12 text-center text-sm">
+  <footer>
     <p>Karnataka State Law University (KSLU) • Hubballi</p>
-    <p class="mt-6">Admin: Rammie</p>
-    <p class="text-xs mt-8">Contact: +91 63695 72268 (WhatsApp only)</p>
+    <p>Admin: Ramesh</p>
+    <p>Contact: +91 6368 72268 (WhatsApp only)</p>
+    <button class="final-support" onclick="window.open('https://wa.me/91636872268', '_blank')">
+      💬 WhatsApp Support
+    </button>
+    <p style="margin-top:30px; font-size:12px;">&copy; LawNotes Live • Premium Notes</p>
   </footer>
 
-<script>
-  const semesters = {
-    3: {
-      name: "Semester 3",
-      notes: [
-        { name: "Demo Namma Kanoonu BNSS Key Notes", file: "Demo_Namma_Kanoonu_BNSS_key_notes_KSLU_Call_95915_73526_AB.pdf" },
-        { name: "Important Questions - BNSS", file: "Important Questions - BNSS.pdf" },
-        { name: "BNSS STS", file: "BNSS STS .pdf" },
-        { name: "BNSS Complete Notes", file: "BNSS.pdf" },
-        { name: "BNSS Notes VBS", file: "bnss-notes-vbs (1).pdf" },
-        { name: "BNSS Notes", file: "BNSS notes.pdf" },
-        { name: "BNSS Notesss", file: "BNSS notesss.pdf" }
-      ]
-    }
-  };
-
-  let currentFile = "";
-
-  function renderSemesters() {
-    const container = document.getElementById('semesterGrid');
-    container.innerHTML = "";
-    for (let i = 1; i <= 10; i++) {
-      const isActive = i === 3;
-      const semDiv = document.createElement('div');
-      semDiv.className = `card bg-white rounded-3xl p-8 text-center cursor-pointer ${isActive ? 'ring-2 ring-emerald-500' : 'border border-slate-200'}`;
-      semDiv.innerHTML = `
-        <div class="text-5xl mb-4">${isActive ? '🔥' : '📚'}</div>
-        <h3 class="font-semibold text-xl">Semester ${i}</h3>
-        <p class="text-sm mt-3 ${isActive ? 'text-emerald-600 font-medium' : 'text-slate-500'}">
-          ${isActive ? '7 BNSS Notes Available' : 'Coming Soon'}
-        </p>
-      `;
-      semDiv.onclick = () => openSemester(i);
-      container.appendChild(semDiv);
-    }
-  }
-
-  function openSemester(semNo) {
-    const data = semesters[semNo];
-    if (!data) {
-      alert(`Semester ${semNo} notes are coming soon!`);
-      return;
+  <!-- JavaScript -->
+  <script>
+    function shareToWhatsApp() {
+      const message = "Check out KSLU BA LL.B Premium Notes on LawNotes Live!\n" +
+                      "Semester-wise • Updated with BNS, BNSS & BSA\n\n" +
+                      window.location.href;
+      const url = "https://wa.me/?text=" + encodeURIComponent(message);
+      window.open(url, "_blank");
     }
 
-    let html = `<h2 class="text-4xl font-bold text-center mb-12">${data.name}</h2>`;
-    html += `<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">`;
+    async function shareWebsite() {
+      const shareData = {
+        title: "KSLU BA LL.B Premium Notes - LawNotes Live",
+        text: "Premium Semester-wise Notes for Karnataka State Law University",
+        url: window.location.href
+      };
 
-    data.notes.forEach(note => {
-      html += `
-        <div class="card bg-white rounded-3xl p-8">
-          <div class="text-6xl mb-6">📋</div>
-          <h4 class="font-semibold text-xl">${note.name}</h4>
-          <p class="text-slate-500 text-sm mt-3">BNSS • KSLU Exam Ready</p>
-          <div class="mt-10 flex justify-between items-center">
-            <span class="text-4xl font-bold text-emerald-600">₹49</span>
-            <button onclick="buyNote('\( {note.file}', ' \){note.name}')" 
-                    class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-2xl font-semibold">
-              Buy Now
-            </button>
-          </div>
-        </div>`;
-    });
-
-    html += `</div><button onclick="location.reload()" class="mt-16 mx-auto block bg-slate-200 hover:bg-slate-300 px-10 py-4 rounded-2xl font-medium">← Back to All Semesters</button>`;
-
-    document.getElementById('mainContent').innerHTML = html;
-  }
-
-  function buyNote(filename, name) {
-    currentFile = filename;
-
-    const options = {
-      "key": "rzp_live_SdKOFjde05IIey",
-      "amount": "4900",           // ₹49
-      "currency": "INR",
-      "name": "Law Notes Live",
-      "description": name,
-      "handler": function (response) {
-        alert("🎉 Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
-        setTimeout(() => {
-          window.open(`https://lawnoteslive.github.io/notes/${currentFile}`, "_blank");
-        }, 1200);
-      },
-      "theme": { "color": "#10b981" }
-    };
-
-    const rzp = new Razorpay(options);
-    rzp.open();
-  }
-
-  // Initialize
-  renderSemesters();
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LawNotes Live • Premium KSLU BA LL.B Notes</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <style>
-    body { font-family: 'Inter', system-ui, sans-serif; }
-    .hero-bg { 
-      background: linear-gradient(rgba(17, 24, 39, 0.92), rgba(17, 24, 39, 0.95)), 
-                  url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover;
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          await navigator.clipboard.writeText(window.location.href);
+          alert("✅ Link copied to clipboard! Paste it anywhere.");
+        }
+      } catch (err) {
+        alert("✅ Link copied to clipboard!");
+      }
     }
-    .gold-gradient { background: linear-gradient(90deg, #facc15, #eab308); }
-    .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    .card-hover:hover { transform: translateY(-15px) scale(1.03); box-shadow: 0 30px 60px -15px rgb(234 179 8 / 0.3); }
-  </style>
-</head>
-<body class="bg-slate-950 text-slate-200">
+  </script>
 
-  <!-- Navbar -->
-  <nav class="bg-slate-900/80 backdrop-blur-lg border-b border-slate-800 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-      <div class="flex items-center gap-4">
-        <span class="text-4xl">⚖️</span>
-        <div>
-          <h1 class="text-3xl font-bold tracking-tight text-white">LawNotes Live</h1>
-          <p class="text-xs text-yellow-400">KSLU • Premium Notes</p>
-        </div>
-      </div>
-      <a href="https://wa.me/+6369572268" target="_blank" 
-         class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 px-6 py-3 rounded-2xl font-semibold transition">
-        <i class="fab fa-whatsapp"></i> WhatsApp Support
-      </a>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <header class="hero-bg py-28 text-center">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="inline-flex items-center gap-2 bg-yellow-400/10 text-yellow-400 text-sm px-4 py-2 rounded-full mb-6">
-        <i class="fas fa-check-circle"></i> Updated for 2026 Exams • BNS, BNSS, BSA
-      </div>
-      <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-        Premium KSLU<br>BA LL.B Notes
-      </h1>
-      <p class="text-xl text-slate-300 max-w-2xl mx-auto">
-        Handcrafted, Exam-oriented notes by toppers. Clear, concise &amp; court-ready.
-      </p>
-      <div class="flex justify-center gap-8 mt-10 text-sm">
-        <div class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> 1000+ Students</div>
-        <div class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> 4.9/5 Rating</div>
-        <div class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Instant Delivery</div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Semester Section -->
-  <section class="max-w-7xl mx-auto px-6 py-20">
-    <h2 class="text-4xl font-bold text-center mb-4">Choose Your Semester</h2>
-    <p class="text-center text-slate-400 mb-16">Semester-wise • Fully Updated • Exam Focused</p>
-
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6" id="semesterGrid"></div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-black py-16 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <p class="text-slate-400">Karnataka State Law University (KSLU) • Hubballi</p>
-      <p class="mt-3 text-yellow-400 font-medium">Admin: Rammie</p>
-      <p class="text-sm text-slate-500 mt-8">Contact: +91 63695 72268 (WhatsApp Only)</p>
-    </div>
-  </footer>
-
-<script>
-  const semesters = {
-    3: {
-      name: "Semester 3",
-      notes: [
-        { name: "Demo Namma Kanoonu BNSS Key Notes", file: "Demo_Namma_Kanoonu_BNSS_key_notes_KSLU_Call_95915_73526_AB.pdf" },
-        { name: "Important Questions - BNSS", file: "Important Questions - BNSS.pdf" },
-        { name: "BNSS STS", file: "BNSS STS .pdf" },
-        { name: "BNSS Complete Notes", file: "BNSS.pdf" },
-        { name: "BNSS Notes VBS", file: "bnss-notes-vbs (1).pdf" },
-        { name: "BNSS Notes", file: "BNSS notes.pdf" },
-        { name: "BNSS Notesss", file: "BNSS notesss.pdf" }
-      ]
-    }
-  };
-
-  let currentFile = "";
-
-  function renderSemesters() {
-    const container = document.getElementById('semesterGrid');
-    container.innerHTML = "";
-
-    for (let i = 1; i <= 10; i++) {
-      const isActive = i === 3;
-      const semDiv = document.createElement('div');
-      semDiv.className = `card-hover bg-slate-900 border border-slate-700 rounded-3xl p-8 text-center cursor-pointer ${isActive ? 'ring-2 ring-yellow-400' : ''}`;
-      semDiv.innerHTML = `
-        <div class="text-6xl mb-6">${isActive ? '🔥' : '📘'}</div>
-        <h3 class="text-2xl font-semibold mb-2">Semester ${i}</h3>
-        <p class="text-emerald-400 text-sm font-medium">${isActive ? '7 Notes Available' : 'Coming Soon'}</p>
-      `;
-      semDiv.onclick = () => openSemester(i);
-      container.appendChild(semDiv);
-    }
-  }
-
-  function openSemester(semNo) {
-    const data = semesters[semNo];
-    if (!data) {
-      alert("Semester " + semNo + " notes coming soon!");
-      return;
-    }
-
-    let html = `<h2 class="text-4xl font-bold text-center mb-12">${data.name}</h2>`;
-    html += `<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">`;
-
-    data.notes.forEach(note => {
-      html += `
-        <div class="card-hover bg-slate-900 border border-slate-700 rounded-3xl p-8">
-          <div class="text-6xl mb-6">📋</div>
-          <h4 class="font-semibold text-xl mb-3">${note.name}</h4>
-          <p class="text-slate-400 text-sm">BNSS • KSLU Exam Ready</p>
-          
-          <div class="mt-8 flex justify-between items-end">
-            <div>
-              <span class="text-4xl font-bold text-yellow-400">₹49</span>
-            </div>
-            <button onclick="buyNote('\( {note.file}', ' \){note.name}')" 
-                    class="bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-semibold px-8 py-4 rounded-2xl transition">
-              Buy Now
-            </button>
-          </div>
-        </div>`;
-    });
-
-    html += `</div><button onclick="location.reload()" class="mt-16 mx-auto block bg-slate-800 hover:bg-slate-700 px-10 py-4 rounded-2xl font-medium">← Back to Semesters</button>`;
-
-    document.getElementById('semesterGrid').parentElement.innerHTML = html;
-  }
-
-  function buyNote(filename, name) {
-    currentFile = filename;
-
-    const options = {
-      "key": "rzp_live_SdKOFjde05IIey",
-      "amount": "4900",
-      "currency": "INR",
-      "name": "Law Notes Live",
-      "description": name,
-      "handler": function (response) {
-        alert("🎉 Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
-        setTimeout(() => {
-          window.open(`https://lawnoteslive.github.io/notes/${currentFile}`, "_blank");
-        }, 1500);
-      },
-      "theme": { "color": "#eab308" }
-    };
-
-    const rzp = new Razorpay(options);
-    rzp.open();
-  }
-
-  // Initialize
-  renderSemesters();
-</script>
 </body>
 </html>
