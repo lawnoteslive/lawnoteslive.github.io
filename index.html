@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LawNotes Live • Official KSLU BA LL.B Notes</title>
+  <title>LawNotes Live • KSLU BA LL.B Premium Notes</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
@@ -34,15 +34,15 @@
   <!-- Hero -->
   <header class="hero-bg text-white py-20 text-center">
     <h1 class="text-5xl font-bold">KSLU BA LL.B Premium Notes</h1>
-    <p class="mt-4 text-xl">Semester-wise • Subject-wise • Pay ₹49 per note • Instant Download</p>
-    <p class="mt-2 text-sm bg-white/20 inline-block px-6 py-1 rounded-full">Admin: Rammie</p>
+    <p class="mt-6 text-xl">Semester-wise • Pay ₹49 per note • Instant Download after WhatsApp</p>
+    <p class="mt-2 text-sm">Admin: Rammie</p>
   </header>
 
-  <!-- Semesters -->
+  <!-- BNSS Notes Section -->
   <section class="max-w-6xl mx-auto px-6 py-16">
-    <h2 class="text-4xl font-semibold text-center mb-12">Select Semester</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6" id="semesterContainer">
-      <!-- Semesters will be added by JS -->
+    <h2 class="text-4xl font-semibold text-center mb-12">BNSS Notes Collection</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="notesContainer">
+      <!-- Cards will load here -->
     </div>
   </section>
 
@@ -59,20 +59,33 @@
         <p class="font-mono text-3xl font-bold">ammu00@ptaxis</p>
       </div>
 
+      <!-- Direct Payment App Buttons -->
       <div class="mt-8 grid grid-cols-3 gap-4">
-        <a href="https://phonepe.com/pay?pa=ammu00@ptaxis&pn=LawNotesLive&am=49&cu=INR" target="_blank" class="bg-[#5C2D91] text-white py-5 rounded-2xl text-center font-medium">PhonePe</a>
-        <a href="https://gpay.app.goo.gl/pay?pa=ammu00@ptaxis&pn=LawNotesLive&am=49&cu=INR" target="_blank" class="bg-[#4285F4] text-white py-5 rounded-2xl text-center font-medium">GPay</a>
-        <a href="https://paytm.com" target="_blank" class="bg-[#00B9F1] text-white py-5 rounded-2xl text-center font-medium">Paytm</a>
+        <a href="https://phonepe.com/pay?pa=ammu00@ptaxis&pn=LawNotesLive&am=49&cu=INR" target="_blank" 
+           class="bg-[#5C2D91] text-white py-6 rounded-2xl text-center font-medium flex flex-col items-center">
+          <i class="fas fa-mobile-alt text-2xl"></i>
+          <span class="text-sm mt-1">PhonePe</span>
+        </a>
+        <a href="https://gpay.app.goo.gl/pay?pa=ammu00@ptaxis&pn=LawNotesLive&am=49&cu=INR" target="_blank" 
+           class="bg-[#4285F4] text-white py-6 rounded-2xl text-center font-medium flex flex-col items-center">
+          <i class="fab fa-google text-2xl"></i>
+          <span class="text-sm mt-1">GPay</span>
+        </a>
+        <a href="https://paytm.com" target="_blank" 
+           class="bg-[#00B9F1] text-white py-6 rounded-2xl text-center font-medium flex flex-col items-center">
+          <i class="fas fa-mobile-alt text-2xl"></i>
+          <span class="text-sm mt-1">Paytm</span>
+        </a>
       </div>
 
-      <a href="https://wa.me/+6369572268?text=Hi%20LawNotes%20Live%2C%20I%20have%20paid%20₹49%20for%20the%20notes.%20Please%20send%20download%20link." 
+      <a href="https://wa.me/+6369572268?text=Hi%20LawNotes%20Live%2C%20I%20have%20paid%20₹49%20for%20BNSS%20notes.%20Please%20send%20the%20download%20link." 
          target="_blank"
          class="mt-8 block w-full bg-[#25D366] text-white py-6 rounded-3xl text-center font-bold flex items-center justify-center gap-3">
         <i class="fab fa-whatsapp text-2xl"></i> Send Screenshot on WhatsApp
       </a>
 
       <button onclick="downloadCurrentNote()" 
-              class="mt-6 w-full bg-emerald-600 text-white py-5 rounded-3xl font-semibold">
+              class="mt-6 w-full bg-emerald-600 text-white py-5 rounded-3xl font-semibold text-lg">
         ✅ Download PDF Now
       </button>
     </div>
@@ -81,77 +94,43 @@
   <!-- Footer -->
   <footer class="bg-slate-900 text-slate-400 py-12 text-center text-sm">
     <p>Karnataka State Law University (KSLU) • Hubballi, Karnataka</p>
-    <p class="mt-2">5-Year BA LL.B • 10 Semesters</p>
     <p class="mt-6">Admin: Rammie</p>
     <p class="text-xs mt-8">Contact: +91 63695 72268 (WhatsApp only)</p>
   </footer>
 
 <script>
-  // ================== ADD YOUR NOTES HERE ==================
-  const semestersData = {
-    3: {
-      name: "Semester 3",
-      subjects: {
-        "BNSS": [
-          { name: "Demo Namma Kanoonu BNSS Key Notes", file: "Demo_Namma_Kanoonu_BNSS_key_notes_KSLU_Call_95915_73526_AB.pdf" },
-          { name: "Important Questions - BNSS", file: "Important Questions - BNSS.pdf" },
-          { name: "BNSS STS", file: "BNSS STS .pdf" },
-          { name: "BNSS Complete Notes", file: "BNSS.pdf" },
-          { name: "BNSS Notes VBS", file: "bnss-notes-vbs (1).pdf" },
-          { name: "BNSS Notes", file: "BNSS notes.pdf" },
-          { name: "BNSS Notesss", file: "BNSS notesss.pdf" }
-        ]
-      }
-    }
-    // You can add Semester 1, 2, 4, 5... here later
-  };
+  const bnssNotes = [
+    { name: "Demo Namma Kanoonu BNSS Key Notes", file: "Demo_Namma_Kanoonu_BNSS_key_notes_KSLU_Call_95915_73526_AB.pdf" },
+    { name: "Important Questions - BNSS", file: "Important Questions - BNSS.pdf" },
+    { name: "BNSS STS", file: "BNSS STS .pdf" },
+    { name: "BNSS Complete Notes", file: "BNSS.pdf" },
+    { name: "BNSS Notes VBS", file: "bnss-notes-vbs (1).pdf" },
+    { name: "BNSS Notes", file: "BNSS notes.pdf" },
+    { name: "BNSS Notesss", file: "BNSS notesss.pdf" }
+  ];
 
+  const container = document.getElementById('notesContainer');
   let currentFile = "";
 
-  // Render Semesters
-  function renderSemesters() {
-    const container = document.getElementById('semesterContainer');
-    for (let i = 1; i <= 10; i++) {
-      const sem = document.createElement('div');
-      sem.className = "card bg-white rounded-3xl p-8 text-center cursor-pointer";
-      sem.innerHTML = `
-        <div class="text-5xl mb-4">📚</div>
-        <h3 class="font-semibold text-xl">Semester ${i}</h3>
-        <p class="text-slate-500 text-sm mt-2">Click to view subjects</p>
-      `;
-      sem.onclick = () => showSemester(i);
-      container.appendChild(sem);
-    }
-  }
-
-  function showSemester(semNo) {
-    const data = semestersData[semNo];
-    if (!data) {
-      alert(`Semester ${semNo} notes are coming soon!`);
-      return;
-    }
-    // For now only Semester 3 has data
-    alert("Showing Semester 3 → BNSS notes (other semesters will be added when you upload more notes)");
-    showSubject("BNSS", data.subjects["BNSS"]);
-  }
-
-  function showSubject(subjectName, notes) {
-    let html = `<h2 class="text-3xl font-bold text-center mb-8">${subjectName}</h2><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">`;
-    
-    notes.forEach(note => {
-      html += `
-        <div class="card bg-white rounded-3xl p-8">
-          <div class="text-6xl mb-6">📋</div>
-          <h4 class="font-semibold">${note.name}</h4>
-          <div class="mt-8 flex justify-between items-end">
-            <span class="text-4xl font-bold text-emerald-600">₹49</span>
-            <button onclick="buyNote('\( {note.file}', ' \){note.name}')" class="bg-emerald-600 text-white px-8 py-4 rounded-2xl font-semibold">Buy Now</button>
-          </div>
-        </div>`;
-    });
-    html += `</div>`;
-    document.body.innerHTML = `<div class="max-w-6xl mx-auto px-6 py-16">${html}<button onclick="location.reload()" class="mt-12 mx-auto block bg-slate-200 px-8 py-4 rounded-2xl">← Back to Semesters</button></div>`;
-  }
+  bnssNotes.forEach(note => {
+    const card = document.createElement('div');
+    card.className = "card bg-white rounded-3xl p-8 shadow cursor-pointer";
+    card.innerHTML = `
+      <div class="text-6xl mb-6">📋</div>
+      <h3 class="font-semibold text-xl leading-tight">${note.name}</h3>
+      <p class="text-slate-500 mt-3 text-sm">BNSS • KSLU Exam Ready</p>
+      <div class="mt-10 flex justify-between items-center">
+        <span class="text-4xl font-bold text-emerald-600">₹49</span>
+        <button onclick="event.stopImmediatePropagation(); buyNote('\( {note.file}', ' \){note.name}');" 
+                class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-2xl font-semibold">
+          Buy Now
+        </button>
+      </div>
+    `;
+    // Make whole card clickable except the button
+    card.onclick = () => buyNote(note.file, note.name);
+    container.appendChild(card);
+  });
 
   function buyNote(filename, name) {
     currentFile = filename;
@@ -165,15 +144,12 @@
     document.getElementById('paymentModal').classList.remove('flex');
   }
 
-  function downloadCurrent() {
+  function downloadCurrentNote() {
     if (currentFile) {
       hideModal();
       window.open(`https://lawnoteslive.github.io/notes/${currentFile}`, "_blank");
     }
   }
-
-  // Initialize
-  renderSemesters();
 </script>
 </body>
 </html>
