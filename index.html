@@ -7,72 +7,101 @@
 
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
-  <div class="logo">⚖️ LawNotes Live</div>
+  <h2>⚖️ LawNotes Live</h2>
 </nav>
 
-<!-- HEADER -->
 <header>
-  <h1>LawNotes Live</h1>
-  <p>Premium Law Notes for BA LL.B Students</p>
+  <h1>Select Course</h1>
 </header>
 
-<!-- NOTES SECTION -->
-<section>
+<!-- COURSES -->
+<section id="courses">
 
-  <h2>📚 Available Notes</h2>
+  <div class="card" onclick="openSection('ballb')">
+    <h3>📘 BA LL.B (5 Years)</h3>
+  </div>
 
-  <div class="grid">
+  <div class="card" onclick="openSection('llb')">
+    <h3>📙 LL.B (3 Years)</h3>
+  </div>
 
-    <!-- Constitution -->
-    <div class="card">
-      <h3>Constitutional Law</h3>
-      <p>Semester 3</p>
-      <p class="price">₹49</p>
-
-      <button onclick="buyNote('constitution')">Buy Now</button>
-
-      <p id="status-constitution" class="status"></p>
-
-      <a id="download-constitution" href="ba-llb/sem3/constitution.pdf" style="display:none;">
-        Download
-      </a>
-    </div>
-
-    <!-- Coming -->
-    <div class="card coming">
-      <h3>BNS</h3>
-      <p>Coming Soon</p>
-    </div>
-
-    <div class="card coming">
-      <h3>BNSS</h3>
-      <p>Coming Soon</p>
-    </div>
-
-    <div class="card coming">
-      <h3>BSA</h3>
-      <p>Coming Soon</p>
-    </div>
-
+  <div class="card" onclick="openSection('llm')">
+    <h3>📗 LL.M (2 Years)</h3>
   </div>
 
 </section>
 
+<!-- BA LLB -->
+<section id="ballb" class="hidden">
+  <h2>BA LL.B - Semesters</h2>
+
+  <div class="grid">
+    <div class="card" onclick="openSection('sem3')">Semester 3</div>
+    <div class="card">Semester 1</div>
+    <div class="card">Semester 2</div>
+    <div class="card">Semester 4</div>
+    <div class="card">Semester 5</div>
+    <div class="card">Semester 6</div>
+    <div class="card">Semester 7</div>
+    <div class="card">Semester 8</div>
+    <div class="card">Semester 9</div>
+    <div class="card">Semester 10</div>
+  </div>
+
+  <button onclick="goBack()">⬅ Back</button>
+</section>
+
+<!-- SEM 3 -->
+<section id="sem3" class="hidden">
+  <h2>Semester 3</h2>
+
+  <div class="card">
+    <h3>Constitutional Law</h3>
+    <p>₹49</p>
+
+    <button onclick="buyNote('constitution')">Buy</button>
+    <p id="status-constitution"></p>
+
+    <a id="download-constitution" href="ba-llb/sem3/constitution.pdf" style="display:none;">
+      Download
+    </a>
+  </div>
+
+  <button onclick="goBack()">⬅ Back</button>
+</section>
+
+<!-- LLB -->
+<section id="llb" class="hidden">
+  <h2>LL.B - Semesters</h2>
+  <div class="grid">
+    <div class="card">Semester 1</div>
+    <div class="card">Semester 2</div>
+    <div class="card">Semester 3</div>
+    <div class="card">Semester 4</div>
+    <div class="card">Semester 5</div>
+    <div class="card">Semester 6</div>
+  </div>
+  <button onclick="goBack()">⬅ Back</button>
+</section>
+
+<!-- LLM -->
+<section id="llm" class="hidden">
+  <h2>LL.M - Semesters</h2>
+  <div class="grid">
+    <div class="card">Semester 1</div>
+    <div class="card">Semester 2</div>
+    <div class="card">Semester 3</div>
+    <div class="card">Semester 4</div>
+  </div>
+  <button onclick="goBack()">⬅ Back</button>
+</section>
+
 <!-- PAYMENT -->
 <section>
-  <h2>💳 Payment</h2>
-
-  <div class="card payment">
-    <p>Pay ₹49 via UPI</p>
-    <b>ammu00@ptaxis</b>
-
-    <p class="small">After payment, click Buy & download</p>
-
-    <a href="https://wa.me/9193639572268" target="_blank">
-      <button>Contact on WhatsApp</button>
-    </a>
+  <h2>Payment</h2>
+  <div class="card">
+    <p>UPI: ammu00@ptaxis</p>
   </div>
 </section>
 
