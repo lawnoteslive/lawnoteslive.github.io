@@ -12,3 +12,12 @@ function buyNote(id) {
     document.getElementById("download-" + id).style.display = "block";
   }, 5000);
 }
+function openSection(id) {
+  document.querySelectorAll("section").forEach(s => s.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+}
+
+function goBack() {
+  document.querySelectorAll("section").forEach(s => s.classList.add("hidden"));
+  document.getElementById("courses").classList.remove("hidden");
+}
