@@ -5,7 +5,7 @@ function buyNote(id) {
 
   // Message
   document.getElementById("status-" + id).innerText =
-    "After payment wait 5 seconds";
+    "Payment opened... wait 5 seconds";
 
   // Unlock
   setTimeout(() => {
