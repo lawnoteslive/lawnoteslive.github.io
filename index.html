@@ -5,14 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LawNotes Live • KSLU BA LL.B Premium Notes</title>
   <style>
-    :root {
-      --primary: #2563eb;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    :root { --green: #10b981; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
       background: #0f172a;
@@ -25,297 +19,363 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 100;
     }
     .logo {
-      font-size: 20px;
-      font-weight: bold;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: bold; color: white;
     }
     .support-btn {
-      background: #10b981;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
+      background: var(--green); color: white; border: none;
+      padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;
     }
+
     header {
-      text-align: center;
-      padding: 40px 20px 30px;
+      text-align: center; padding: 40px 20px 20px;
       background: linear-gradient(to bottom, #1e2937, #0f172a);
     }
-    header h1 {
-      font-size: 42px;
-      font-weight: 700;
-      margin-bottom: 8px;
+    header h1 { font-size: 42px; font-weight: 700; margin-bottom: 5px; }
+
+    .main-container {
+      max-width: 700px; margin: 20px auto; padding: 0 15px;
     }
-    header p {
-      color: #94a3b8;
-      font-size: 18px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      padding: 30px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .card {
+
+    .purchase-card {
       background: #1e2937;
       border-radius: 16px;
-      padding: 24px 20px;
+      padding: 25px;
+      border: 2px solid var(--green);
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      color: var(--green);
       text-align: center;
-      transition: all 0.3s ease;
-      border: 1px solid #334155;
-    }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    }
-    .card.coming {
-      opacity: 0.85;
-    }
-    .card.available {
-      border: 2px solid #10b981;
-      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
-    }
-    .card img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 16px;
-    }
-    .card h3 {
-      font-size: 20px;
-      margin-bottom: 8px;
-      color: white;
-    }
-    .status {
-      color: #94a3b8;
-      font-size: 14px;
       margin-bottom: 20px;
     }
-    button {
+
+    label {
+      font-weight: 600;
+      margin: 15px 0 8px;
+      display: block;
+    }
+
+    select {
       width: 100%;
       padding: 14px;
-      margin-top: 12px;
-      border: none;
       border-radius: 10px;
-      font-weight: 600;
+      background: #334155;
+      color: white;
+      border: none;
+      font-size: 16px;
+    }
+
+    .subjects-box {
+      background: #334155;
+      border-radius: 12px;
+      padding: 10px;
+      margin: 15px 0;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+
+    .subject-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 10px;
+      border-bottom: 1px solid #475569;
+    }
+    .subject-item:last-child { border-bottom: none; }
+
+    .folder-section {
+      background: #1e2937;
+      border: 2px solid #334155;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 25px;
+    }
+
+    .folder-header {
+      color: #94a3b8;
       font-size: 15px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .pdf-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #334155;
+      padding: 14px 16px;
+      margin: 8px 0;
+      border-radius: 10px;
+    }
+
+    .total-box {
+      background: #0f172a;
+      padding: 18px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 23px;
+      font-weight: 700;
+      color: var(--green);
+      margin: 20px 0;
+    }
+
+    .buy-btn {
+      background: var(--green);
+      color: white;
+      width: 100%;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
       cursor: pointer;
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
-    /* Old Download Button Style */
+    .buy-btn:hover { background: #059669; }
+
     .download-btn {
-      background: var(--primary);
+      background: #2563eb;
       color: white;
-    }
-    .download-btn:hover {
-      background: #1e40af;
-      transform: translateY(-2px);
-    }
-
-    /* WhatsApp Button */
-    .whatsapp-btn {
-      background: #25D366;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .whatsapp-btn:hover {
-      background: #20ba5a;
-      transform: translateY(-3px) scale(1.03);
-    }
-
-    /* Share Button */
-    .share-btn {
-      background: #64748b;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .share-btn:hover {
-      background: #475569;
-      transform: translateY(-3px) scale(1.03);
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
     }
 
     footer {
       text-align: center;
-      padding: 40px 20px 20px;
+      padding: 30px 20px;
       color: #64748b;
       font-size: 14px;
-    }
-    .final-support {
-      background: #10b981;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 16px;
-      margin-top: 20px;
-      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
   <div class="navbar">
     <div class="logo">
-      ⚖️ LawNotes Live
+      <span style="font-size:28px;">⚖️</span> LawNotes Live
     </div>
-    <button class="support-btn">Support</button>
+    <button class="support-btn" onclick="window.open('https://wa.me/91636872268','_blank')">Support</button>
   </div>
 
-  <!-- Header -->
   <header>
     <h1>KSLU BA LL.B</h1>
-    <p>Premium Notes Collection</p>
-    <p style="margin-top:10px; font-size:16px;">Semester-wise • Updated with BNS, BNSS & BSA</p>
+    <p>Premium Notes • Updated with New Criminal Laws</p>
   </header>
 
-  <!-- Grid of Cards -->
-  <div class="grid">
+  <div class="main-container">
 
-    <!-- Semester 1 -->
-    <div class="card coming">
-      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 1">
-      <h3>Semester 1</h3>
-      <p class="status">Coming Soon</p>
-      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
-      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
+    <!-- Purchase Card -->
+    <div class="purchase-card">
+      <h2>Buy Individual Subject Notes</h2>
+
+      <label>Select Semester</label>
+      <select id="semesterSelect" onchange="loadSubjects()">
+        <option value="">-- Choose Semester --</option>
+        <option value="1">Semester 1</option>
+        <option value="2">Semester 2</option>
+        <option value="3">Semester 3</option>
+        <option value="4">Semester 4</option>
+        <option value="5">Semester 5</option>
+        <option value="6">Semester 6</option>
+        <option value="7">Semester 7</option>
+        <option value="8">Semester 8</option>
+        <option value="9">Semester 9</option>
+        <option value="10">Semester 10</option>
+      </select>
+
+      <div id="subjectsContainer" style="display: none;">
+        <label style="margin-top:20px;">Select Subjects (₹49 each)</label>
+        <div id="subjectsList" class="subjects-box"></div>
+      </div>
+
+      <div id="totalBox" class="total-box">Total: ₹0 (0 subjects)</div>
+
+      <button class="buy-btn" onclick="initiatePayment()">
+        💰 Buy Selected Notes with Razorpay
+      </button>
     </div>
 
-    <!-- Semester 2 -->
-    <div class="card coming">
-      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 2">
-      <h3>Semester 2</h3>
-      <p class="status">Coming Soon</p>
-      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
-      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
-    </div>
-
-    <!-- Semester 3 - Available -->
-    <div class="card available">
-      <img src="https://via.placeholder.com/80x80/ff5722/ffffff?text=🔥" alt="Semester 3">
-      <h3>Semester 3</h3>
-      <p class="status">7 BNSS Notes Available</p>
-      <button class="download-btn" onclick="alert('Download feature coming soon!')">📥 Download Notes</button>
-      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
-      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
-    </div>
-
-    <!-- Semester 4 to 10 -->
-    <div class="card coming">
-      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 4">
-      <h3>Semester 4</h3>
-      <p class="status">Coming Soon</p>
-      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
-      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
-    </div>
-
-    <div class="card coming">
-      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 5">
-      <h3>Semester 5</h3>
-      <p class="status">Coming Soon</p>
-      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
-      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
-    </div>
-
-    <div class="card coming">
-      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 6">
-      <h3>Semester 6</h3>
-      <p class="status">Coming Soon</p>
-      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
-      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
-    </div>
-
-    <div class="card coming">
-      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 7">
-      <h3>Semester 7</h3>
-      <p class="status">Coming Soon</p>
-      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
-      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
-    </div>
-
-    <div class="card coming">
-      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 8">
-      <h3>Semester 8</h3>
-      <p class="status">Coming Soon</p>
-      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
-      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
-    </div>
-
-    <div class="card coming">
-      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 9">
-      <h3>Semester 9</h3>
-      <p class="status">Coming Soon</p>
-      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
-      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
-    </div>
-
-    <div class="card coming">
-      <img src="https://via.placeholder.com/80x80/334155/ffffff?text=📚" alt="Semester 10">
-      <h3>Semester 10</h3>
-      <p class="status">Coming Soon</p>
-      <button class="whatsapp-btn" onclick="shareToWhatsApp()">📱 Share on WhatsApp</button>
-      <button class="share-btn" onclick="shareWebsite()">🔗 Share Website</button>
+    <!-- Selected Folder (PDFs appear here immediately when checked) -->
+    <div class="folder-section">
+      <div class="folder-header">📁 Your Selected Notes Folder</div>
+      <div id="selectedFolder" style="min-height: 80px;"></div>
     </div>
 
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>Karnataka State Law University (KSLU) • Hubballi</p>
-    <p>Admin: Ramesh</p>
-    <p>Contact: +91 6368 72268 (WhatsApp only)</p>
-    <button class="final-support" onclick="window.open('https://wa.me/91636872268', '_blank')">
-      💬 WhatsApp Support
-    </button>
-    <p style="margin-top:30px; font-size:12px;">&copy; LawNotes Live • Premium Notes</p>
-  </footer>
+  <!-- Download Section after payment -->
+  <div id="downloadSection" class="purchase-card" style="display:none; border-color:#10b981;">
+    <h2>✅ Your Purchased Notes</h2>
+    <div id="purchasedList"></div>
+  </div>
 
-  <!-- JavaScript -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
   <script>
-    function shareToWhatsApp() {
-      const message = "Check out KSLU BA LL.B Premium Notes on LawNotes Live!\n" +
-                      "Semester-wise • Updated with BNS, BNSS & BSA\n\n" +
-                      window.location.href;
-      const url = "https://wa.me/?text=" + encodeURIComponent(message);
-      window.open(url, "_blank");
+    let selectedSubjects = [];
+    let currentSemester = "";
+
+    const semesterSubjects = {
+      "1": ["Contract Law", "Constitutional Law", "Legal Methods", "Law of Torts", "Family Law"],
+      "2": ["Special Contract", "Constitutional Law II", "Criminal Law", "Property Law", "Company Law"],
+      "3": ["BNSS Unit 1", "BNSS Unit 2", "BNSS Unit 3", "BNSS Unit 4", "Constitutional Law I", "Family Law I", "Law of Torts"],
+      "4": ["BNSS Advanced", "Evidence Law", "Civil Procedure", "Labour Law", "Environmental Law"],
+      "5": ["BNS", "BSA", "Administrative Law", "IPR", "Tax Law"]
+    };
+
+    function loadSubjects() {
+      const sem = document.getElementById("semesterSelect").value;
+      const container = document.getElementById("subjectsContainer");
+      const listDiv = document.getElementById("subjectsList");
+
+      selectedSubjects = [];
+      updateFolder();
+
+      if (!sem || !semesterSubjects[sem]) {
+        container.style.display = "none";
+        return;
+      }
+
+      currentSemester = `Semester ${sem}`;
+      container.style.display = "block";
+      listDiv.innerHTML = "";
+
+      semesterSubjects[sem].forEach(subject => {
+        const div = document.createElement("div");
+        div.className = "subject-item";
+        div.innerHTML = `
+          <label style="cursor:pointer; flex:1;">
+            <input type="checkbox" onchange="toggleSubject(this, '${subject}')" style="margin-right:12px;">
+            ${subject}
+          </label>
+          <span style="color:#10b981; font-weight:600;">₹49</span>
+        `;
+        listDiv.appendChild(div);
+      });
     }
 
-    async function shareWebsite() {
-      const shareData = {
-        title: "KSLU BA LL.B Premium Notes - LawNotes Live",
-        text: "Premium Semester-wise Notes for Karnataka State Law University",
-        url: window.location.href
+    function toggleSubject(checkbox, subjectName) {
+      if (checkbox.checked) {
+        if (!selectedSubjects.includes(subjectName)) {
+          selectedSubjects.push(subjectName);
+        }
+      } else {
+        selectedSubjects = selectedSubjects.filter(s => s !== subjectName);
+      }
+      updateTotal();
+      updateFolder();
+    }
+
+    function updateTotal() {
+      const total = selectedSubjects.length * 49;
+      document.getElementById("totalBox").innerHTML = 
+        `Total: ₹\( {total} ( \){selectedSubjects.length} subjects)`;
+    }
+
+    function updateFolder() {
+      const folder = document.getElementById("selectedFolder");
+      folder.innerHTML = "";
+
+      if (selectedSubjects.length === 0) {
+        folder.innerHTML = `<p style="text-align:center; color:#64748b; padding:20px;">No notes selected yet.<br>Select subjects above.</p>`;
+        return;
+      }
+
+      selectedSubjects.forEach(subject => {
+        const div = document.createElement("div");
+        div.className = "pdf-item";
+        div.innerHTML = `
+          <div>
+            <strong>${subject}</strong><br>
+            <small style="color:#94a3b8;">${currentSemester} • ₹49</small>
+          </div>
+          <span style="color:#10b981; font-weight:600;">PDF</span>
+        `;
+        folder.appendChild(div);
+      });
+    }
+
+    function initiatePayment() {
+      if (selectedSubjects.length === 0) {
+        alert("Please select at least one subject!");
+        return;
+      }
+
+      const amountPaise = selectedSubjects.length * 49 * 100;
+
+      const options = {
+        "key": "YOUR_RAZORPAY_KEY_ID",   // ← Replace with your real Razorpay Key ID
+        "amount": amountPaise,
+        "currency": "INR",
+        "name": "LawNotes Live",
+        "description": `${currentSemester} Notes`,
+        "image": "https://via.placeholder.com/128/2563eb/ffffff?text=⚖️",
+        "handler": function (response) {
+          alert(`✅ Payment Successful! ₹${selectedSubjects.length * 49} paid.\n\nYour notes are now ready to download.`);
+          showPurchasedNotes();
+        },
+        "prefill": { "name": "", "email": "", "contact": "" },
+        "notes": {
+          "semester": currentSemester,
+          "subjects": selectedSubjects.join(", ")
+        },
+        "theme": { "color": "#10b981" }
       };
 
-      try {
-        if (navigator.share) {
-          await navigator.share(shareData);
-        } else {
-          await navigator.clipboard.writeText(window.location.href);
-          alert("✅ Link copied to clipboard! Paste it anywhere.");
-        }
-      } catch (err) {
-        alert("✅ Link copied to clipboard!");
-      }
+      const rzp = new Razorpay(options);
+      rzp.on('payment.failed', function (res) {
+        alert("Payment Failed: " + res.error.description);
+      });
+      rzp.open();
+    }
+
+    function showPurchasedNotes() {
+      const section = document.getElementById("downloadSection");
+      const list = document.getElementById("purchasedList");
+      list.innerHTML = "";
+
+      selectedSubjects.forEach(subject => {
+        const div = document.createElement("div");
+        div.className = "pdf-item";
+        div.innerHTML = `
+          <div>
+            <strong>${subject}</strong><br>
+            <small>${currentSemester} • ₹49</small>
+          </div>
+          <button class="download-btn" onclick="downloadPDF('${subject}')">📥 Download PDF</button>
+        `;
+        list.appendChild(div);
+      });
+
+      section.style.display = "block";
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function downloadPDF(subjectName) {
+      alert(`Downloading ${subjectName}.pdf\n\n(Replace this alert with real download link later)`);
+      // Real link example: window.open("https://your-link.com/" + subjectName + ".pdf", "_blank");
     }
   </script>
+
+  <footer>
+    <p>Karnataka State Law University (KSLU) • Hubballi</p>
+    <p>Admin: Ramesh | Contact: +91 6368 72268 (WhatsApp only)</p>
+    <button onclick="window.open('https://wa.me/91636872268','_blank')" 
+            style="background:#10b981;color:white;padding:14px 30px;border:none;border-radius:10px;margin-top:15px;cursor:pointer;">
+      💬 WhatsApp Support
+    </button>
+  </footer>
 
 </body>
 </html>
