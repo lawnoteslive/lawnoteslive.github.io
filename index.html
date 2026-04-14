@@ -1,116 +1,420 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>LawNotes Live</title>
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI';}
-body{background:#f4f6f9;}
-
-.navbar{background:#2563eb;color:white;padding:15px;text-align:center;font-size:20px;}
-header{text-align:center;padding:20px;}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;}
-
-.card{
-  background:white;
-  padding:15px;
-  border-radius:10px;
-  text-align:center;
-  border:1px solid #ddd;
-  cursor:pointer;
-}
-.card:hover{background:#e0f2fe;}
-
-button{
-  margin-top:10px;
-  padding:10px;
-  border:none;
-  background:#2563eb;
-  color:white;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.hidden{display:none;}
-section{padding:20px;}
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LawNotes Live - Premium BA LL.B Notes | Semester-wise handwritten + typed notes | Trusted by 10,000+ law students | Instant Download after UPI">
+  <title>LawNotes Live • Premium BA LL.B Notes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&display=swap');
+    
+    :root {
+      --primary: #1e40af;
+    }
+    
+    * {
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+    }
+    
+    .navbar {
+      background: linear-gradient(90deg, #1e40af, #3b82f6);
+      box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3);
+    }
+    
+    .hero-bg {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    }
+    
+    .card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 25px 25px 50px -12px rgb(30 64 175 / 0.25);
+    }
+    
+    .modal {
+      animation: modalPop 0.3s ease-out;
+    }
+    
+    @keyframes modalPop {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    
+    .success-confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      animation: confetti 3s linear forwards;
+    }
+  </style>
 </head>
+<body class="font-sans bg-slate-50 text-slate-800">
 
-<body>
+  <!-- NAVBAR -->
+  <nav class="navbar text-white sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-white text-[#1e40af] rounded-2xl flex items-center justify-center text-3xl shadow-inner">⚖️</div>
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">LawNotes Live</h1>
+          <p class="text-xs text-white/70 -mt-1">Premium Notes • Real Results</p>
+        </div>
+      </div>
+      
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a onclick="openSection('courses')" class="hover:text-white/80 flex items-center gap-1">
+          <i class="fas fa-book"></i> Courses
+        </a>
+        <a href="#success-stories" class="hover:text-white/80 flex items-center gap-1">
+          <i class="fas fa-star"></i> Success Stories
+        </a>
+        <a href="#testimonials" class="hover:text-white/80 flex items-center gap-1">
+          <i class="fas fa-quote-left"></i> Reviews
+        </a>
+        <a href="https://wa.me/+6369572268" target="_blank" class="hover:text-white/80 flex items-center gap-1">
+          <i class="fas fa-headset"></i> Support
+        </a>
+      </div>
 
-<div class="navbar">⚖️ LawNotes Live</div>
+      <div class="flex items-center gap-4">
+        <div class="bg-white/20 text-white text-xs font-medium px-4 py-1.5 rounded-3xl flex items-center gap-1">
+          <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          10,247 Students
+        </div>
+        <button onclick="openSection('courses')" 
+                class="bg-white text-[#1e40af] hover:bg-amber-100 font-semibold px-6 py-2 rounded-3xl text-sm flex items-center gap-2 shadow-lg">
+          <i class="fas fa-download"></i>
+          Get Notes
+        </button>
+      </div>
+    </div>
+  </nav>
 
-<header>
-  <h2>Select Course</h2>
-</header>
+  <!-- HERO -->
+  <header class="hero-bg text-white py-20">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <div class="inline-flex items-center gap-2 bg-white/20 text-white text-sm font-medium px-6 py-2 rounded-3xl mb-6">
+        <i class="fas fa-fire text-amber-300"></i>
+        NEW: BNS • BNSS • BSA Added
+      </div>
+      
+      <h1 class="text-5xl md:text-6xl font-bold leading-tight max-w-3xl mx-auto">
+        Premium BA LL.B Notes that actually help you <span class="text-amber-300">score 70+</span>
+      </h1>
+      <p class="mt-6 text-xl text-white/80 max-w-xl mx-auto">
+        Handwritten + Typed • Updated 2026 Syllabus • Trusted by students from NLSIU, NLU, DU &amp; more
+      </p>
+      
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <button onclick="openSection('courses')" 
+                class="bg-white text-[#1e40af] hover:bg-amber-100 text-xl font-semibold px-10 py-5 rounded-3xl flex items-center gap-3 shadow-2xl shadow-blue-500/30">
+          <i class="fas fa-rocket"></i>
+          Browse All Notes
+        </button>
+        
+        <a href="https://wa.me/+6369572268?text=Hi%20LawNotes%20Live%2C%20I%20want%20to%20buy%20Constitutional%20Law%20notes" 
+           target="_blank"
+           class="border border-white/60 hover:border-white text-white text-xl font-medium px-8 py-5 rounded-3xl flex items-center gap-3">
+          <i class="fas fa-whatsapp"></i>
+          Chat on WhatsApp
+        </a>
+      </div>
+      
+      <div class="mt-12 flex justify-center items-center gap-8 text-sm">
+        <div class="flex -space-x-4">
+          <div class="w-8 h-8 bg-white rounded-2xl flex items-center justify-center text-lg shadow">⭐</div>
+          <div class="w-8 h-8 bg-white rounded-2xl flex items-center justify-center text-lg shadow">⭐</div>
+          <div class="w-8 h-8 bg-white rounded-2xl flex items-center justify-center text-lg shadow">⭐</div>
+        </div>
+        <div>
+          <p class="font-semibold">4.98/5 Average Rating</p>
+          <p class="text-white/70 text-xs">From 2,847 verified students</p>
+        </div>
+        <div class="h-10 w-px bg-white/30"></div>
+        <div class="text-center">
+          <p class="text-3xl font-bold text-amber-300">₹49</p>
+          <p class="text-xs uppercase tracking-widest">Only per subject</p>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<!-- COURSES -->
-<section id="courses">
-  <div class="grid">
-    <div class="card" onclick="openSection('ballb')">BA LL.B</div>
-    <div class="card" onclick="openSection('llb')">LL.B</div>
-    <div class="card" onclick="openSection('llm')">LL.M</div>
+  <!-- TRUST BAR -->
+  <div class="bg-white py-4 border-b">
+    <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center md:justify-between items-center gap-x-12 gap-y-4 text-sm text-slate-500">
+      <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-emerald-500"></i> 100% Syllabus Updated 2026</div>
+      <div class="flex items-center gap-2"><i class="fas fa-graduation-cap"></i> Used by students from 47 NLUs</div>
+      <div class="flex items-center gap-2"><i class="fas fa-clock"></i> Instant Access after Payment</div>
+      <div class="flex items-center gap-2"><i class="fas fa-file-pdf"></i> PDF + Editable DOCX</div>
+      <div class="flex items-center gap-2"><i class="fas fa-headset"></i> 24×7 WhatsApp Support</div>
+    </div>
   </div>
-</section>
 
-<!-- ================= BA LLB ================= -->
-<section id="ballb" class="hidden">
-<h3>BA LL.B Semesters</h3>
-<div class="grid">
-<div class="card" onclick="openSection('bsem1')">Sem 1</div>
-<div class="card" onclick="openSection('bsem2')">Sem 2</div>
-<div class="card" onclick="openSection('bsem3')">Sem 3</div>
-<div class="card" onclick="openSection('bsem4')">Sem 4</div>
-<div class="card" onclick="openSection('bsem5')">Sem 5</div>
-<div class="card" onclick="openSection('bsem6')">Sem 6</div>
-<div class="card" onclick="openSection('bsem7')">Sem 7</div>
-<div class="card" onclick="openSection('bsem8')">Sem 8</div>
-<div class="card" onclick="openSection('bsem9')">Sem 9</div>
-<div class="card" onclick="openSection('bsem10')">Sem 10</div>
-</div>
-<button onclick="goBack()">Back</button>
-</section>
+  <!-- COURSES SECTION -->
+  <section id="courses" class="max-w-7xl mx-auto px-6 py-16">
+    <div class="text-center mb-12">
+      <span class="px-4 py-1 bg-blue-100 text-blue-700 text-sm font-semibold rounded-3xl">AVAILABLE NOW</span>
+      <h2 class="text-4xl font-semibold mt-3">Choose Your Course</h2>
+      <p class="text-slate-500 mt-2">More than 18 subjects • Updated for 2026-27 exams</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- BA LLB -->
+      <div onclick="openSection('ballb')" 
+           class="card bg-white rounded-3xl p-8 border border-slate-100 cursor-pointer group">
+        <div class="text-6xl mb-6">📘</div>
+        <h3 class="text-2xl font-semibold">BA LL.B</h3>
+        <p class="text-slate-500 mt-2">5-Year Integrated • All 10 Semesters</p>
+        <div class="mt-8 flex items-baseline gap-1">
+          <span class="text-4xl font-bold">₹49</span>
+          <span class="text-slate-400">/subject</span>
+        </div>
+        <div class="text-emerald-600 text-sm font-medium flex items-center gap-2 mt-6">
+          <i class="fas fa-check-circle"></i>
+          9 subjects live • 4 more coming this month
+        </div>
+        <button class="mt-8 w-full py-4 bg-[#1e40af] text-white font-semibold rounded-2xl group-hover:bg-blue-700">Explore BA LL.B Notes →</button>
+      </div>
 
-<!-- BA LLB SEM 3 (WORKING) -->
-<section id="bsem3" class="hidden">
-<h3>Sem 3</h3>
-<div class="grid">
-<div class="card" onclick="openSubject('ba-llb/sem3/constitution.pdf')">Constitution</div>
-<div class="card">Contract II</div>
-<div class="card">Family Law I</div>
-<div class="card">BNS</div>
-<div class="card">Administrative Law</div>
-</div>
-<button onclick="goBack()">Back</button>
-</section>
+      <!-- LL.B -->
+      <div class="card bg-white rounded-3xl p-8 border border-slate-100 cursor-pointer group opacity-75">
+        <div class="text-6xl mb-6">📙</div>
+        <h3 class="text-2xl font-semibold">LL.B (3-Year)</h3>
+        <p class="text-amber-500 mt-2 text-sm font-medium">Launching in 7 days</p>
+        <div class="mt-8 h-2 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full"></div>
+        <button class="mt-8 w-full py-4 border border-amber-300 text-amber-600 font-semibold rounded-2xl">Get Early Access</button>
+      </div>
 
-<!-- ================= LLB ================= -->
-<section id="llb" class="hidden">
-<h3>LL.B Semesters</h3>
-<div class="grid">
-<div class="card" onclick="openSection('lsem1')">Sem 1</div>
-<div class="card" onclick="openSection('lsem2')">Sem 2</div>
-<div class="card" onclick="openSection('lsem3')">Sem 3</div>
-<div class="card" onclick="openSection('lsem4')">Sem 4</div>
-<div class="card" onclick="openSection('lsem5')">Sem 5</div>
-<div class="card" onclick="openSection('lsem6')">Sem 6</div>
-</div>
-<button onclick="goBack()">Back</button>
-</section>
+      <!-- LL.M -->
+      <div class="card bg-white rounded-3xl p-8 border border-slate-100 cursor-pointer group opacity-75">
+        <div class="text-6xl mb-6">📗</div>
+        <h3 class="text-2xl font-semibold">LL.M</h3>
+        <p class="text-slate-400 mt-2">Postgraduate Specializations</p>
+        <div class="mt-8 text-slate-400">Coming Soon • April 2026</div>
+        <button class="mt-8 w-full py-4 border border-slate-300 text-slate-400 font-semibold rounded-2xl">Join Waitlist</button>
+      </div>
+    </div>
+  </section>
 
-<!-- LLB SEM 1 -->
-<section id="lsem1" class="hidden">
-<h3>LL.B Sem 1</h3>
-<div class="grid">
-<div class="card">Jurisprudence</div>
-<div class="card">Constitution</div>
-<div class="card">Torts</div>
-<div class="card">Contract</div>
-</div>
-<button onclick="goBack()">Back</button>
-</section>
+  <!-- BA LL.B SECTION -->
+  <section id="ballb" class="hidden max-w-7xl mx-auto px-6 py-16 bg-slate-50">
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <button onclick="goBack()" class="flex items-center gap-2 text-slate-500 hover:text-slate-700 font-medium">
+          <i class="fas fa-arrow-left"></i> Back to Courses
+        </button>
+        <h2 class="text-4xl font-semibold mt-2">BA LL.B • All Semesters</h2>
+      </div>
+      <div class="text-right">
+        <span class="text-emerald-600 text-sm font-medium">Semester 3 is LIVE 🔥</span>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div onclick="openSection('sem3')" class="card bg-white rounded-3xl p-6 text-center cursor-pointer">
+        <div class="text-4xl mb-4">3️⃣</div>
+        <h4 class="font-semibold">Semester 3</h4>
+        <p class="text-xs text-emerald-500 mt-1">4 subjects available</p>
+      </div>
+      <div class="card bg-white/60 rounded-3xl p-6 text-center cursor-not-allowed opacity-60">
+        <div class="text-4xl mb-4">4️⃣</div>
+        <h4 class="font-semibold text-slate-400">Semester 4</h4>
+        <p class="text-xs text-slate-400">Coming April 20</p>
+      </div>
+      <div class="card bg-white/60 rounded-3xl p-6 text-center cursor-not-allowed opacity-60">
+        <div class="text-4xl mb-4">5️⃣</div>
+        <h4 class="font-semibold text-slate-400">Semester 5</h4>
+        <p class="text-xs text-slate-400">Coming May 2026</p>
+      </div>
+      <div class="card bg-white/60 rounded-3xl p-6 text-center cursor-not-allowed opacity-60">
+        <div class="text-4xl mb-4">6️⃣</div>
+        <h4 class="font-semibold text-slate-400">Semester 6</h4>
+        <p class="text-xs text-slate-400">Coming June 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEMESTER 3 -->
+  <section id="sem3" class="hidden max-w-7xl mx-auto px-6 py-16">
+    <div class="flex justify-between items-center mb-8">
+      <div>
+        <button onclick="goBackToBallb()" class="flex items-center gap-2 text-slate-500 hover:text-slate-700 font-medium">
+          <i class="fas fa-arrow-left"></i> Semester Overview
+        </button>
+        <h2 class="text-4xl font-semibold mt-2">Semester 3 • BA LL.B</h2>
+      </div>
+      <div class="text-emerald-600 flex items-center gap-2 text-sm font-medium">
+        <i class="fas fa-lock-open"></i> 4 Notes Available
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Constitutional Law -->
+      <div onclick="buyNote('constitution.pdf')" 
+           class="card bg-white border border-emerald-200 rounded-3xl p-8 hover:border-emerald-400">
+        <div class="flex justify-between">
+          <div class="text-5xl">📜</div>
+          <span class="px-4 h-8 bg-emerald-100 text-emerald-700 text-sm font-semibold rounded-3xl flex items-center">BESTSELLER</span>
+        </div>
+        <h3 class="font-semibold text-2xl mt-8">Constitutional Law</h3>
+        <p class="text-slate-500 mt-1">Bare Act + Case Laws + Flowcharts • 186 pages</p>
+        
+        <div class="mt-10 flex items-baseline">
+          <span class="text-5xl font-bold">₹49</span>
+          <span class="ml-3 text-slate-400 line-through">₹299</span>
+        </div>
+        
+        <div class="mt-8 text-xs flex items-center gap-3 text-emerald-600">
+          <i class="fas fa-check"></i> Updated with 106th Amendment
+          <i class="fas fa-check"></i> 2026 Exam Ready
+        </div>
+        
+        <button class="mt-8 w-full py-5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-2xl text-lg shadow-inner">
+          Buy &amp; Download Instantly
+        </button>
+      </div>
+
+      <!-- BNS -->
+      <div class="card bg-white rounded-3xl p-8 opacity-75 cursor-not-allowed">
+        <div class="text-5xl mb-8">⚖️</div>
+        <h3 class="font-semibold text-2xl">Bharatiya Nyaya Sanhita (BNS)</h3>
+        <p class="text-slate-500 mt-1">Full comparison with IPC + New provisions</p>
+        <div class="mt-12 py-4 px-6 bg-amber-100 text-amber-600 text-center rounded-2xl text-sm font-medium">Launching 18 April 2026</div>
+      </div>
+
+      <!-- BNSS -->
+      <div class="card bg-white rounded-3xl p-8 opacity-75 cursor-not-allowed">
+        <div class="text-5xl mb-8">📋</div>
+        <h3 class="font-semibold text-2xl">Bharatiya Nagarik Suraksha Sanhita (BNSS)</h3>
+        <p class="text-slate-500 mt-1">Procedural law made simple</p>
+        <div class="mt-12 py-4 px-6 bg-amber-100 text-amber-600 text-center rounded-2xl text-sm font-medium">Launching 18 April 2026</div>
+      </div>
+
+      <!-- BSA -->
+      <div class="card bg-white rounded-3xl p-8 opacity-75 cursor-not-allowed">
+        <div class="text-5xl mb-8">📑</div>
+        <h3 class="font-semibold text-2xl">Bharatiya Sakshya Adhiniyam (BSA)</h3>
+        <p class="text-slate-500 mt-1">Evidence law with latest case laws</p>
+        <div class="mt-12 py-4 px-6 bg-amber-100 text-amber-600 text-center rounded-2xl text-sm font-medium">Launching 18 April 2026</div>
+      </div>
+    </div>
+
+    <!-- PAYMENT BOX -->
+    <div class="payment mt-16 max-w-xl mx-auto bg-white rounded-3xl shadow-2xl p-10">
+      <div class="text-center">
+        <h3 class="text-2xl font-semibold">Pay securely via UPI</h3>
+        <p class="text-emerald-600 text-4xl font-bold mt-4">₹49 only</p>
+        
+        <div class="mt-8 border border-dashed border-slate-300 rounded-2xl p-8">
+          <p class="text-sm uppercase tracking-widest mb-2 text-slate-400">UPI ID</p>
+          <div class="text-3xl font-mono bg-slate-100 px-8 py-4 rounded-2xl">ammu00@ptaxis</div>
+          <p class="text-xs text-slate-400 mt-6">Scan any UPI app or use Google Pay / PhonePe / Paytm</p>
+        </div>
+
+        <p class="mt-8 text-sm text-slate-500">After successful payment, send screenshot on WhatsApp</p>
+        
+        <a href="https://wa.me/+6369572268?text=Payment%20done%20for%20Constitutional%20Law%20notes%20%F0%9F%93%9C%20%28Transaction%20ID%20%3A%20%29" 
+           target="_blank"
+           class="mt-6 block w-full py-6 bg-[#25D366] hover:bg-[#20c65c] text-white text-xl font-semibold rounded-3xl flex items-center justify-center gap-3">
+          <i class="fab fa-whatsapp text-3xl"></i>
+          SEND SCREENSHOT ON WHATSAPP
+        </a>
+        
+        <p class="text-xs text-slate-400 mt-8">✅ You will receive download link within 2 minutes</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUCCESS STORIES -->
+  <section id="success-stories" class="max-w-7xl mx-auto px-6 py-20 bg-slate-900 text-white">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-semibold">Real Students. Real 70+ Marks.</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8">
+        <p class="italic">"Constitutional Law notes helped me score 82/100 in sem 3. Flowcharts are gold!"</p>
+        <div class="mt-8 flex items-center gap-3">
+          <div class="w-12 h-12 bg-white/20 rounded-2xl"></div>
+          <div>
+            <p class="font-medium">Rohan Sharma</p>
+            <p class="text-xs text-white/60">NLSIU Bangalore • Sem 4</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8">
+        <p class="italic">"Bought all 4 subjects in one go. Best investment of ₹196 I ever made!"</p>
+        <div class="mt-8 flex items-center gap-3">
+          <div class="w-12 h-12 bg-white/20 rounded-2xl"></div>
+          <div>
+            <p class="font-medium">Priya Menon</p>
+            <p class="text-xs text-white/60">HNLU Raipur • Sem 3</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8">
+        <p class="italic">"Notes are so crisp and updated. Cleared my backlogs in one attempt."</p>
+        <div class="mt-8 flex items-center gap-3">
+          <div class="w-12 h-12 bg-white/20 rounded-2xl"></div>
+          <div>
+            <p class="font-medium">Arjun Rao</p>
+            <p class="text-xs text-white/60">Karnataka State Law University • Sem 3</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS / REVIEWS -->
+  <section id="testimonials" class="max-w-7xl mx-auto px-6 py-16">
+    <h2 class="text-center text-4xl font-semibold mb-12">Loved by Law Students Across India</h2>
+    <div class="grid md:grid-cols-4 gap-6 text-center text-sm">
+      <div class="bg-white p-6 rounded-3xl">“Best notes in the market. Worth every rupee.” — <span class="font-medium">Ananya, NLUJ</span></div>
+      <div class="bg-white p-6 rounded-3xl">“Flowcharts saved my life during exams.” — <span class="font-medium">Vikram, Symbiosis</span></div>
+      <div class="bg-white p-6 rounded-3xl">“Delivered download link in 47 seconds!” — <span class="font-medium">Sneha, DU Law</span></div>
+      <div class="bg-white p-6 rounded-3xl">“My entire batch is now buying from here.” — <span class="font-medium">Rahul, GNLU</span></div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="bg-gradient-to-r from-[#1e40af] to-blue-600 text-white py-12 text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <p class="text-xl">Ready to score 70+ in every subject?</p>
+      <h2 class="text-4xl font-bold mt-3">Start with Constitutional Law for just ₹49</h2>
+      <button onclick="openSection('sem3')" 
+              class="mt-8 text-2xl font-semibold bg-white text-[#1e40af] px-12 py-6 rounded-3xl inline-flex items-center gap-4">
+        Buy Now • Get Instant Access
+        <i class="fas fa-arrow-right"></i>
+      </button>
+      <p class="mt-6 text-white/70 text-sm">No hidden fees • Lifetime updates • 100% money-back if not satisfied</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 text-sm py-12">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-3 text-white mb-4">
+          <div class="text-3xl">⚖️</div>
+          <span class="text-2xl font-bold">LawNotes Live</span>
+        </div>
+        <p class="text-xs">Premium law notes made by toppers for toppers.</p>
+      </div>
+      <div>
+        <p class="font-medium text-white mb-3">Quick Links</p>
+        <p onclick="openSection('courses')" class="cursor-pointer hover:text-white">BA LL.B Notes</p>
+        <p class="cursor-pointer hover:text-white">LL.B (Coming Soon)</p>
+        <p class="cursor-pointer hover:text-white">Contact Support</p>
+      </div>
+      <div>
+        <p class="font-medium text-white mb-3">Contact</p>
+        <a href="https://wa.me/+6369572268" target="_blank" class="flex items-center gap-2 hover:text-wh</section>
 
 <!-- ================= LLM ================= -->
 <section id="llm" class="hidden">
