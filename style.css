@@ -163,3 +163,74 @@ button:focus-visible {
     bottom: 90px;
   }
 }
+/* ====================== NEW: WHATSAPP & SHARE BUTTONS FOR YOUR APP ====================== */
+
+/* WhatsApp Button - Green & Prominent */
+.whatsapp-btn {
+  background: #25D366 !important;
+  color: white !important;
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.whatsapp-btn:hover {
+  background: #20ba5a !important;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-btn:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* Website Share Button */
+.share-btn {
+  background: #64748b !important;
+  color: white !important;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.share-btn:hover {
+  background: #475569 !important;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(71, 85, 105, 0.35);
+}
+
+.share-btn:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* Make sure buttons look good on dark theme */
+.card .whatsapp-btn,
+.card .share-btn {
+  margin-top: 16px;
+}
+
+/* Extra spacing for mobile */
+@media (max-width: 768px) {
+  .whatsapp-btn, .share-btn {
+    padding: 13px 18px;
+    font-size: 14.5px;
+  }
+}
