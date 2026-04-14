@@ -1,178 +1,93 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
+/* ====================== REFINED BUTTONS ====================== */
 
-body {
-  background: #f1f5f9;
-  color: #0f172a;
-}
-
-/* NAVBAR */
-.navbar {
-  padding: 15px 20px;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-.logo {
-  font-size: 20px;
-  font-weight: bold;
-  color: #2563eb;
-}
-
-/* HEADER */
-header {
-  text-align: center;
-  padding: 30px 20px;
-}
-
-header h1 {
-  font-size: 32px;
-  color: #2563eb;
-}
-
-header p {
-  color: #64748b;
-  margin-top: 8px;
-}
-
-/* SECTION */
-section {
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px;
-}
-
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-}
-
-/* CARD */
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.coming {
-  opacity: 0.6;
-}
-
-/* PRICE */
-.price {
-  color: green;
-  font-weight: bold;
-}
-
-/* BUTTON */
 button {
-  margin-top: 10px;
-  padding: 10px;
+  margin-top: 16px;
+  padding: 14px 20px;
   border: none;
-  background: #2563eb;
+  background: var(--primary);
   color: white;
-  border-radius: 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
   cursor: pointer;
   width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
+/* Hover Effect */
 button:hover {
-  background: #1d4ed8;
+  background: var(--primary-light);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
 }
 
-/* STATUS */
-.status {
-  font-size: 14px;
-  margin-top: 5px;
-  color: #64748b;
+/* Pressed Effect */
+button:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+  transition: all 0.1s ease;
 }
 
-/* DOWNLOAD */
-a {
-  display: block;
-  margin-top: 10px;
-  text-align: center;
-  color: green;
-  font-weight: bold;
-}
-
-/* PAYMENT */
-.payment {
-  text-align: center;
-}
-
-.small {
-  font-size: 12px;
-  color: #64748b;
-}
-.hidden {
-  display: none;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
-  gap: 10px;
-}
-/* IMPROVED UI */
-
-body {
-  background: #eef2f7;
-}
-
-/* CARDS LOOK PREMIUM */
-.card {
-  background: white;
-  padding: 18px;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  text-align: center;
-  font-weight: 500;
-  transition: 0.25s;
-}
-
-.card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-/* NAVBAR */
-.navbar {
-  background: #2563eb;
-  color: white;
-  padding: 15px;
-  text-align: center;
-  font-size: 18px;
-}
-
-/* HEADER */
-header h1 {
-  color: #1e293b;
-}
-
-/* BUTTON */
-button {
-  background: #2563eb;
-  border-radius: 8px;
-}
-
-button:hover {
-  background: #1e40af;
-}
-
-/* BACK BUTTON */
-button:last-child {
+/* Secondary Button (Back button etc.) */
+button.secondary {
   background: #64748b;
+  box-shadow: 0 4px 15px rgba(100, 116, 139, 0.25);
+}
+
+button.secondary:hover {
+  background: #475569;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(71, 85, 105, 0.35);
+}
+
+button.secondary:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Shine Effect on Hover */
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transition: left 0.7s;
+}
+
+button:hover::before {
+  left: 250%;
+}
+
+/* Disabled State */
+button:disabled {
+  background: #94a3b8;
+  color: #e2e8f0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+button:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Focus for Accessibility */
+button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.5);
+  outline-offset: 4px;
 }
