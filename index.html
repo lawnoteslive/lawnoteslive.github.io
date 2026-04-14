@@ -11,6 +11,7 @@
     .hero-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
     .card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
     .card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px -12px rgb(30 58 138 / 0.25); }
+    .preview { background: #f8fafc; border: 2px dashed #cbd5e1; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -38,11 +39,11 @@
     <p class="mt-2 text-sm">Admin: Rammie</p>
   </header>
 
-  <!-- BNSS Notes Section -->
+  <!-- BNSS Notes -->
   <section class="max-w-6xl mx-auto px-6 py-16">
     <h2 class="text-4xl font-semibold text-center mb-12">BNSS Notes Collection</h2>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="notesContainer">
-      <!-- Cards will load here -->
+      <!-- Cards loaded by JS -->
     </div>
   </section>
 
@@ -52,29 +53,39 @@
       <button onclick="hideModal()" class="absolute top-5 right-5 text-3xl text-slate-400">×</button>
       
       <h3 class="text-2xl font-bold text-center" id="modalNoteName">Pay ₹49</h3>
-      <p class="text-emerald-600 text-5xl font-bold text-center mt-6">₹49 only</p>
+
+      <!-- PDF Preview -->
+      <div class="preview mt-8 p-4 rounded-2xl text-center">
+        <p class="text-xs text-slate-500 mb-2">Preview of Notes</p>
+        <div class="bg-white border rounded-xl py-12 text-slate-400 text-sm">
+          📄 First Page of Notes<br>
+          <span class="text-xs">(Replace with actual screenshot later)</span>
+        </div>
+      </div>
+
+      <p class="text-emerald-600 text-5xl font-bold text-center mt-8">₹49 only</p>
 
       <div class="mt-10 p-6 bg-slate-100 rounded-2xl text-center">
         <p class="text-xs uppercase tracking-widest">UPI ID</p>
         <p class="font-mono text-3xl font-bold">ammu00@ptaxis</p>
       </div>
 
-      <!-- Direct Payment App Buttons -->
+      <!-- Payment Apps -->
       <div class="mt-8 grid grid-cols-3 gap-4">
-        <a href="https://phonepe.com/pay?pa=ammu00@ptaxis&pn=LawNotesLive&am=49&cu=INR" target="_blank" 
+        <a href="phonepe://pay?pa=ammu00@ptaxis&pn=LawNotesLive&am=49&cu=INR" target="_blank" 
            class="bg-[#5C2D91] text-white py-6 rounded-2xl text-center font-medium flex flex-col items-center">
           <i class="fas fa-mobile-alt text-2xl"></i>
-          <span class="text-sm mt-1">PhonePe</span>
+          <span class="text-xs mt-1">PhonePe</span>
         </a>
-        <a href="https://gpay.app.goo.gl/pay?pa=ammu00@ptaxis&pn=LawNotesLive&am=49&cu=INR" target="_blank" 
+        <a href="gpay://pay?pa=ammu00@ptaxis&pn=LawNotesLive&am=49&cu=INR" target="_blank" 
            class="bg-[#4285F4] text-white py-6 rounded-2xl text-center font-medium flex flex-col items-center">
           <i class="fab fa-google text-2xl"></i>
-          <span class="text-sm mt-1">GPay</span>
+          <span class="text-xs mt-1">GPay</span>
         </a>
-        <a href="https://paytm.com" target="_blank" 
+        <a href="paytm://pay?pa=ammu00@ptaxis&pn=LawNotesLive&am=49&cu=INR" target="_blank" 
            class="bg-[#00B9F1] text-white py-6 rounded-2xl text-center font-medium flex flex-col items-center">
           <i class="fas fa-mobile-alt text-2xl"></i>
-          <span class="text-sm mt-1">Paytm</span>
+          <span class="text-xs mt-1">Paytm</span>
         </a>
       </div>
 
@@ -93,7 +104,7 @@
 
   <!-- Footer -->
   <footer class="bg-slate-900 text-slate-400 py-12 text-center text-sm">
-    <p>Karnataka State Law University (KSLU) • Hubballi, Karnataka</p>
+    <p>Karnataka State Law University (KSLU) • Hubballi</p>
     <p class="mt-6">Admin: Rammie</p>
     <p class="text-xs mt-8">Contact: +91 63695 72268 (WhatsApp only)</p>
   </footer>
@@ -127,7 +138,6 @@
         </button>
       </div>
     `;
-    // Make whole card clickable except the button
     card.onclick = () => buyNote(note.file, note.name);
     container.appendChild(card);
   });
