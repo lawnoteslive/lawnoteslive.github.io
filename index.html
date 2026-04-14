@@ -90,7 +90,9 @@
       border: 2px solid #f59e0b;
       border-radius: 18px;
       font-size: 16px;
+      cursor: pointer;
     }
+    select:focus { outline: none; border-color: #a855f7; }
 
     .subjects-grid {
       display: grid;
@@ -133,7 +135,7 @@
       font-size: 1.3rem;
     }
 
-    .selected-list { max-height: 260px; overflow-y: auto; }
+    .selected-list { max-height: 260px; overflow-y: auto; padding-right: 5px; }
 
     .pdf-item-mini {
       background: #0f172f;
@@ -144,6 +146,13 @@
       justify-content: space-between;
       align-items: center;
       border-left: 4px solid #10b981;
+    }
+
+    .empty-folder {
+      color: #94a3b8;
+      text-align: center;
+      padding: 20px;
+      font-style: italic;
     }
 
     .total {
@@ -179,6 +188,7 @@
       background: #10b981;
       border-color: white;
       transform: scale(1.01);
+      box-shadow: 0 8px 20px rgba(16,185,129,0.3);
     }
 
     .buy-btn:disabled { opacity: 0.55; cursor: not-allowed; }
@@ -187,7 +197,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.92);
       backdrop-filter: blur(6px);
       z-index: 2000;
       align-items: center;
@@ -202,6 +212,7 @@
       border-radius: 32px;
       padding: 28px;
       border: 1px solid #f59e0b;
+      box-shadow: 0 30px 40px rgba(0,0,0,0.5);
     }
 
     .pdf-item-modal {
@@ -210,9 +221,11 @@
       margin: 12px 0;
       border-radius: 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 12px;
     }
+    .pdf-item-modal input { width: 18px; height: 18px; cursor: pointer; }
+    .pdf-item-modal label { margin: 0; cursor: pointer; flex: 1; }
 
     .btn-group {
       display: flex;
@@ -227,10 +240,31 @@
       border-radius: 40px;
       font-weight: 600;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     .btn-cancel { background: #334155; color: white; }
-    .btn-add { background: #f59e0b; color: #0f172a; }
+    .btn-cancel:hover { background: #475569; }
+    .btn-add { background: #f59e0b; color: #0f172a; font-weight: 700; }
+    .btn-add:hover { background: #fbbf24; transform: scale(1.02); }
+
+    .remove-item-btn {
+      background: #dc2626;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.1s;
+    }
+    .remove-item-btn:hover { background: #ef4444; transform: scale(1.05); }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1e2937; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
   </style>
 </head>
 <body>
@@ -275,7 +309,7 @@
     💰 Total: ₹0 (0 PDFs)
   </div>
 
-  <button class="buy-btn" id="buyBtn" onclick="initiatePayment()" disabled>
+  <button class="buy-btn" id="buyBtn" disabled>
     🔐 Secure Payment with Razorpay
   </button>
 </div>
@@ -292,6 +326,7 @@
 </div>
 
 <script>
+  // ======================== KSLU BA LL.B SEMESTER DATA ========================
   const semesterData = {
     "1": { subjects: ["Legal Methods", "Law of Torts", "Contract Law - I", "Constitutional Law - I", "Family Law - I (Hindu Law)"] },
     "2": { subjects: ["Special Contract", "Constitutional Law - II", "Criminal Law (BNS/IPC)", "Property Law", "Company Law"] },
@@ -327,42 +362,71 @@
   const modalSubjectTitle = document.getElementById("modalSubjectTitle");
   const modalMaterialsList = document.getElementById("modalMaterialsList");
 
+  // Helper: escape HTML
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+
   function renderSelectedAndTotal() {
     if (selectedPDFs.length === 0) {
-      selectedMaterialsDiv.innerHTML = `<div class="empty-folder">✨ No notes added yet. Click on any subject.</div>`;
+      selectedMaterialsDiv.innerHTML = `<div class="empty-folder">✨ No notes added yet. Click on any subject to add PDFs.</div>`;
     } else {
       selectedMaterialsDiv.innerHTML = "";
       selectedPDFs.forEach((item, idx) => {
         const div = document.createElement("div");
         div.className = "pdf-item-mini";
         div.innerHTML = `
-          <span><strong>${item.subject}</strong> — ${item.pdfName}</span>
-          <span style="color:#facc15;">₹${item.price}</span>
-          <button onclick="removeItem(${idx})" style="background:#dc2626;color:white;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;">✕</button>
+          <span><strong>${escapeHtml(item.subject)}</strong> — ${escapeHtml(item.pdfName)}</span>
+          <span style="color:#facc15; font-weight:600;">₹${item.price}</span>
+          <button class="remove-item-btn" data-index="${idx}">✕</button>
         `;
         selectedMaterialsDiv.appendChild(div);
       });
+
+      document.querySelectorAll(".remove-item-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const index = parseInt(btn.getAttribute("data-index"));
+          if (!isNaN(index) && index >= 0 && index < selectedPDFs.length) {
+            selectedPDFs.splice(index, 1);
+            renderSelectedAndTotal();
+          }
+        });
+      });
     }
 
-    const total = selectedPDFs.reduce((sum, p) => sum + p.price, 0);
-    totalBox.innerHTML = `💰 Total: ₹\( {total} ( \){selectedPDFs.length} PDFs)`;
-    buyBtn.disabled = selectedPDFs.length === 0;
+    const totalAmount = selectedPDFs.reduce((sum, p) => sum + p.price, 0);
+    const count = selectedPDFs.length;
+    totalBox.innerHTML = `💰 Total: ₹${totalAmount} (${count} PDF${count !== 1 ? 's' : ''} selected)`;
+    buyBtn.disabled = (count === 0);
   }
-
-  window.removeItem = function(idx) {
-    selectedPDFs.splice(idx, 1);
-    renderSelectedAndTotal();
-  };
 
   function loadSemester() {
     const sem = semesterSelect.value;
-    if (!sem) return;
+    if (!sem) {
+      subjectsContainer.style.display = "none";
+      folderSection.style.display = "none";
+      return;
+    }
+
+    const subjectsArray = semesterData[sem]?.subjects;
+    if (!subjectsArray) {
+      subjectsGrid.innerHTML = `<div style="padding:20px; text-align:center;">⚠️ No subjects data</div>`;
+      subjectsContainer.style.display = "block";
+      folderSection.style.display = "block";
+      return;
+    }
 
     subjectsGrid.innerHTML = "";
-    semesterData[sem].subjects.forEach(subject => {
+    subjectsArray.forEach(subject => {
       const card = document.createElement("div");
       card.className = "subject-card";
-      card.innerHTML = `<span>📘 ${subject}</span>`;
+      card.innerHTML = `<span>📘 ${escapeHtml(subject)}</span>`;
       card.onclick = () => openMaterialModal(subject);
       subjectsGrid.appendChild(card);
     });
@@ -376,12 +440,13 @@
     modalSubjectTitle.textContent = subject;
     modalMaterialsList.innerHTML = "";
 
-    PDF_TEMPLATES.forEach((t, i) => {
+    PDF_TEMPLATES.forEach((template, idx) => {
       const div = document.createElement("div");
       div.className = "pdf-item-modal";
+      const uniqueId = `pdf_${subject.replace(/\s/g, '_')}_${idx}`;
       div.innerHTML = `
-        <input type="checkbox" id="pdf\( {i}" data-name=" \){t.name}" data-price="${t.price}">
-        <label for="pdf\( {i}"> \){t.name} — <span style="color:#facc15;">₹${t.price}</span></label>
+        <input type="checkbox" id="${uniqueId}" data-pdf-name="${escapeHtml(template.name)}" data-price="${template.price}">
+        <label for="${uniqueId}">${escapeHtml(template.name)} — <span style="color:#facc15;">₹${template.price}</span></label>
       `;
       modalMaterialsList.appendChild(div);
     });
@@ -390,64 +455,140 @@
   }
 
   function addSelectedToFolder() {
-    const checked = modalMaterialsList.querySelectorAll("input:checked");
-    checked.forEach(cb => {
-      selectedPDFs.push({
-        subject: currentSubjectForModal,
-        pdfName: cb.dataset.name,
-        price: parseInt(cb.dataset.price)
-      });
+    const checkboxes = modalMaterialsList.querySelectorAll("input[type='checkbox']:checked");
+    if (checkboxes.length === 0) {
+      const toast = document.createElement("div");
+      toast.innerText = "⚠️ Please select at least one PDF";
+      toast.style.position = "fixed";
+      toast.style.bottom = "20px";
+      toast.style.left = "50%";
+      toast.style.transform = "translateX(-50%)";
+      toast.style.background = "#f59e0b";
+      toast.style.color = "#0f172a";
+      toast.style.padding = "10px 20px";
+      toast.style.borderRadius = "40px";
+      toast.style.fontWeight = "bold";
+      toast.style.zIndex = "9999";
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 1800);
+      return;
+    }
+
+    checkboxes.forEach(cb => {
+      const pdfName = cb.getAttribute("data-pdf-name");
+      const price = parseInt(cb.getAttribute("data-price"));
+      if (pdfName && !isNaN(price)) {
+        selectedPDFs.push({
+          subject: currentSubjectForModal,
+          pdfName: pdfName,
+          price: price
+        });
+      }
+      cb.checked = false;
     });
+
     renderSelectedAndTotal();
     closeModal();
   }
 
   function closeModal() {
     modal.style.display = "none";
+    currentSubjectForModal = "";
   }
 
-  // ==================== PERFECT PAYMENT HANDLER ====================
+  // ==================== RAZORPAY PAYMENT - FULLY FIXED ====================
+  // YOUR RAZORPAY LIVE KEY (correctly formatted)
+  const RAZORPAY_KEY_ID = "rzp_live_SdKOFjde05IIey";
+  
+  // Note: The key you provided: "rzp_live_SdKOFjde05IIey"
+  // Make sure this is the COMPLETE key from your Razorpay Dashboard
+  // Live keys usually have format: rzp_live_XXXXXXXXXXXXXX
+
   function initiatePayment() {
     if (selectedPDFs.length === 0) {
-      alert("Please add at least one PDF to your folder.");
+      alert("📚 Please add at least one PDF to your folder before payment.");
       return;
     }
 
     const totalAmount = selectedPDFs.reduce((sum, item) => sum + item.price, 0);
     const amountInPaise = totalAmount * 100;
+    
+    if (amountInPaise <= 0) {
+      alert("Invalid amount. Please try again.");
+      return;
+    }
+
+    // Build order summary for WhatsApp
+    const itemSummary = selectedPDFs.map(item => `${item.subject} - ${item.pdfName}`).join("\n");
+    const encodedSummary = encodeURIComponent(itemSummary);
 
     const options = {
-      key: "rzp_live_SdKOFyI3M51AfC9TUHCJtg2ijLfB1",   // Your Live Key ID
+      key: RAZORPAY_KEY_ID,
       amount: amountInPaise,
       currency: "INR",
       name: "LawNotes Live",
-      description: `KSLU BA LL.B Notes - ${selectedPDFs.length} items`,
-      handler: function (response) {
-        // Success → Send summary via WhatsApp
-        let summary = selectedPDFs.map(item => `${item.subject} - ${item.pdfName}`).join("%0A");
-        const whatsappMessage = `✅ *Payment Successful!*%0A%0APayment ID: \( {response.razorpay_payment_id}%0ATotal Paid: ₹ \){totalAmount}%0A%0A*Selected Notes:*%0A${summary}%0A%0AThank you for purchasing from LawNotes Live!%0AYour PDFs will be sent shortly via WhatsApp.`;
+      description: `KSLU BA LL.B Notes (${selectedPDFs.length} items)`,
+      image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      prefill: {
+        name: "Law Student",
+        email: "student@lawnotes.com",
+        contact: "9999999999"
+      },
+      theme: {
+        color: "#10b981"
+      },
+      modal: {
+        ondismiss: function() {
+          console.log("Payment modal closed by user");
+        }
+      },
+      handler: function(response) {
+        // Payment success
+        const paymentId = response.razorpay_payment_id;
+        const whatsappMsg = `✅ *Payment Successful!*%0A%0APayment ID: ${paymentId}%0ATotal Paid: ₹${totalAmount}%0A%0A*Selected Notes:*%0A${encodedSummary}%0A%0AThank you for purchasing from LawNotes Live!%0AYour PDFs will be sent to your WhatsApp/Email within 5 minutes.`;
         
-        window.open(`https://wa.me/639636872268?text=${whatsappMessage}`, '_blank');
+        window.open(`https://wa.me/639636872268?text=${whatsappMsg}`, '_blank');
+        alert(`✅ Payment Successful!\n\nPayment ID: ${paymentId}\nAmount: ₹${totalAmount}\n\nOrder summary sent to WhatsApp.`);
         
-        alert(`✅ Payment Successful!\nPayment ID: ${response.razorpay_payment_id}\nSummary sent to WhatsApp.`);
+        // Optional: Clear cart after successful payment (uncomment if desired)
+        // selectedPDFs = [];
+        // renderSelectedAndTotal();
       }
     };
 
+    // Initialize Razorpay
     const rzp = new Razorpay(options);
-
-    // Better failure handling
-    rzp.on('payment.failed', function (response) {
-      const errorMsg = response.error.description || "Unknown error occurred";
-      alert(`❌ Payment Failed\n\nReason: ${errorMsg}\n\nPlease try again or contact WhatsApp support.`);
+    
+    // Handle payment failure
+    rzp.on('payment.failed', function(response) {
+      let errorMsg = "Unknown error";
+      if (response.error) {
+        errorMsg = response.error.description || response.error.reason || "Payment failed";
+      }
+      alert(`❌ Payment Failed\n\nReason: ${errorMsg}\n\nPlease try again using a different payment method or contact WhatsApp support.`);
       console.error("Razorpay Error:", response.error);
     });
 
+    // Open payment modal
     rzp.open();
   }
 
   // Event listeners
   semesterSelect.addEventListener("change", loadSemester);
+  buyBtn.addEventListener("click", initiatePayment);
+
+  // Close modal when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Initial render
   renderSelectedAndTotal();
+  
+  // Console log for key verification (remove in production)
+  console.log("Razorpay Key configured:", RAZORPAY_KEY_ID);
 </script>
 </body>
 </html>
