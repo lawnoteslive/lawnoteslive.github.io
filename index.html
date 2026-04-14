@@ -2,110 +2,157 @@
 <html>
 <head>
   <title>LawNotes Live</title>
-  <link rel="stylesheet" href="style.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI';}
+body{background:#f4f6f9;}
+
+.navbar{background:#2563eb;color:white;padding:15px;text-align:center;font-size:20px;}
+header{text-align:center;padding:20px;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;}
+
+.card{
+  background:white;
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+  border:1px solid #ddd;
+  cursor:pointer;
+}
+.card:hover{background:#e0f2fe;}
+
+button{
+  margin-top:10px;
+  padding:10px;
+  border:none;
+  background:#2563eb;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.hidden{display:none;}
+section{padding:20px;}
+</style>
+
 </head>
 
 <body>
 
-<nav class="navbar">
-  <h2>⚖️ LawNotes Live</h2>
-</nav>
+<div class="navbar">⚖️ LawNotes Live</div>
 
 <header>
-  <h1>Select Course</h1>
+  <h2>Select Course</h2>
 </header>
 
 <!-- COURSES -->
 <section id="courses">
-
-  <div class="card" onclick="openSection('ballb')">
-    <h3>📘 BA LL.B (5 Years)</h3>
+  <div class="grid">
+    <div class="card" onclick="openSection('ballb')">BA LL.B</div>
+    <div class="card" onclick="openSection('llb')">LL.B</div>
+    <div class="card" onclick="openSection('llm')">LL.M</div>
   </div>
-
-  <div class="card" onclick="openSection('llb')">
-    <h3>📙 LL.B (3 Years)</h3>
-  </div>
-
-  <div class="card" onclick="openSection('llm')">
-    <h3>📗 LL.M (2 Years)</h3>
-  </div>
-
 </section>
 
-<!-- BA LLB -->
+<!-- ================= BA LLB ================= -->
 <section id="ballb" class="hidden">
-  <h2>BA LL.B - Semesters</h2>
-
-  <div class="grid">
-    <div class="card" onclick="openSection('sem3')">Semester 3</div>
-    <div class="card">Semester 1</div>
-    <div class="card">Semester 2</div>
-    <div class="card">Semester 4</div>
-    <div class="card">Semester 5</div>
-    <div class="card">Semester 6</div>
-    <div class="card">Semester 7</div>
-    <div class="card">Semester 8</div>
-    <div class="card">Semester 9</div>
-    <div class="card">Semester 10</div>
-  </div>
-
-  <button onclick="goBack()">⬅ Back</button>
+<h3>BA LL.B Semesters</h3>
+<div class="grid">
+<div class="card" onclick="openSection('bsem1')">Sem 1</div>
+<div class="card" onclick="openSection('bsem2')">Sem 2</div>
+<div class="card" onclick="openSection('bsem3')">Sem 3</div>
+<div class="card" onclick="openSection('bsem4')">Sem 4</div>
+<div class="card" onclick="openSection('bsem5')">Sem 5</div>
+<div class="card" onclick="openSection('bsem6')">Sem 6</div>
+<div class="card" onclick="openSection('bsem7')">Sem 7</div>
+<div class="card" onclick="openSection('bsem8')">Sem 8</div>
+<div class="card" onclick="openSection('bsem9')">Sem 9</div>
+<div class="card" onclick="openSection('bsem10')">Sem 10</div>
+</div>
+<button onclick="goBack()">Back</button>
 </section>
 
-<!-- SEM 3 -->
-<section id="sem3" class="hidden">
-  <h2>Semester 3</h2>
-
-  <div class="card">
-    <h3>Constitutional Law</h3>
-    <p>₹49</p>
-
-    <button onclick="buyNote('constitution')">Buy</button>
-    <p id="status-constitution"></p>
-
-    <a id="download-constitution" href="ba-llb/sem3/constitution.pdf" style="display:none;">
-      Download
-    </a>
-  </div>
-
-  <button onclick="goBack()">⬅ Back</button>
+<!-- BA LLB SEM 3 (WORKING) -->
+<section id="bsem3" class="hidden">
+<h3>Sem 3</h3>
+<div class="grid">
+<div class="card" onclick="openSubject('ba-llb/sem3/constitution.pdf')">Constitution</div>
+<div class="card">Contract II</div>
+<div class="card">Family Law I</div>
+<div class="card">BNS</div>
+<div class="card">Administrative Law</div>
+</div>
+<button onclick="goBack()">Back</button>
 </section>
 
-<!-- LLB -->
+<!-- ================= LLB ================= -->
 <section id="llb" class="hidden">
-  <h2>LL.B - Semesters</h2>
-  <div class="grid">
-    <div class="card">Semester 1</div>
-    <div class="card">Semester 2</div>
-    <div class="card">Semester 3</div>
-    <div class="card">Semester 4</div>
-    <div class="card">Semester 5</div>
-    <div class="card">Semester 6</div>
-  </div>
-  <button onclick="goBack()">⬅ Back</button>
+<h3>LL.B Semesters</h3>
+<div class="grid">
+<div class="card" onclick="openSection('lsem1')">Sem 1</div>
+<div class="card" onclick="openSection('lsem2')">Sem 2</div>
+<div class="card" onclick="openSection('lsem3')">Sem 3</div>
+<div class="card" onclick="openSection('lsem4')">Sem 4</div>
+<div class="card" onclick="openSection('lsem5')">Sem 5</div>
+<div class="card" onclick="openSection('lsem6')">Sem 6</div>
+</div>
+<button onclick="goBack()">Back</button>
 </section>
 
-<!-- LLM -->
+<!-- LLB SEM 1 -->
+<section id="lsem1" class="hidden">
+<h3>LL.B Sem 1</h3>
+<div class="grid">
+<div class="card">Jurisprudence</div>
+<div class="card">Constitution</div>
+<div class="card">Torts</div>
+<div class="card">Contract</div>
+</div>
+<button onclick="goBack()">Back</button>
+</section>
+
+<!-- ================= LLM ================= -->
 <section id="llm" class="hidden">
-  <h2>LL.M - Semesters</h2>
-  <div class="grid">
-    <div class="card">Semester 1</div>
-    <div class="card">Semester 2</div>
-    <div class="card">Semester 3</div>
-    <div class="card">Semester 4</div>
-  </div>
-  <button onclick="goBack()">⬅ Back</button>
+<h3>LL.M Semesters</h3>
+<div class="grid">
+<div class="card" onclick="openSection('msem1')">Sem 1</div>
+<div class="card" onclick="openSection('msem2')">Sem 2</div>
+<div class="card" onclick="openSection('msem3')">Sem 3</div>
+<div class="card" onclick="openSection('msem4')">Sem 4</div>
+</div>
+<button onclick="goBack()">Back</button>
 </section>
 
-<!-- PAYMENT -->
-<section>
-  <h2>Payment</h2>
-  <div class="card">
-    <p>UPI: ammu00@ptaxis</p>
-  </div>
+<!-- LLM SEM 1 -->
+<section id="msem1" class="hidden">
+<h3>LL.M Sem 1</h3>
+<div class="grid">
+<div class="card">Research Methodology</div>
+<div class="card">Comparative Law</div>
+<div class="card">Advanced Constitutional Law</div>
+</div>
+<button onclick="goBack()">Back</button>
 </section>
 
-<script src="script.js"></script>
+<script>
+
+function openSection(id){
+document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));
+document.getElementById(id).classList.remove("hidden");
+}
+
+function goBack(){
+document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));
+document.getElementById("courses").classList.remove("hidden");
+}
+
+function openSubject(file){
+window.location.href="upi://pay?pa=ammu00@ptaxis&pn=LawNotes&am=49&cu=INR";
+setTimeout(()=>{window.open(file,"_blank");},5000);
+}
+
+</script>
 
 </body>
 </html>
