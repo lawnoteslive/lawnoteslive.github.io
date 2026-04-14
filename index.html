@@ -1,6 +1,3 @@
-
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +8,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -23,11 +16,6 @@
       color: #eef2ff;
       min-height: 100vh;
       padding-bottom: 3rem;
-    }
-
-    /* smooth scroll */
-    html {
-      scroll-behavior: smooth;
     }
 
     .header {
@@ -65,7 +53,6 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(16,185,129,0.3);
     }
 
     .support-btn:hover {
@@ -87,7 +74,6 @@
       margin-bottom: 24px;
       border: 1px solid #334155;
       box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
-      transition: all 0.2s;
     }
 
     .title {
@@ -106,7 +92,6 @@
       margin: 12px 0 8px;
       font-weight: 600;
       color: #b9c7db;
-      letter-spacing: 0.3px;
     }
 
     select {
@@ -117,15 +102,6 @@
       border: 2px solid #f59e0b;
       border-radius: 18px;
       font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    select:focus {
-      outline: none;
-      border-color: #a855f7;
-      box-shadow: 0 0 0 2px rgba(168,85,247,0.3);
     }
 
     .subjects-grid {
@@ -144,7 +120,6 @@
       transition: all 0.25s ease;
       font-weight: 600;
       border: 1px solid #475569;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     .subject-card:hover {
@@ -159,7 +134,6 @@
       padding: 20px;
       margin: 20px 0;
       border: 1px solid #334155;
-      backdrop-filter: blur(4px);
     }
 
     .folder h3 {
@@ -174,7 +148,6 @@
     .selected-list {
       max-height: 260px;
       overflow-y: auto;
-      padding-right: 5px;
     }
 
     .pdf-item-mini {
@@ -186,7 +159,6 @@
       justify-content: space-between;
       align-items: center;
       border-left: 4px solid #10b981;
-      font-size: 0.9rem;
     }
 
     .total {
@@ -199,7 +171,6 @@
       font-weight: 800;
       color: #6ee7b7;
       margin: 20px 0;
-      letter-spacing: -0.3px;
     }
 
     .buy-btn {
@@ -223,7 +194,6 @@
       background: #10b981;
       border-color: white;
       transform: scale(1.01);
-      box-shadow: 0 8px 20px rgba(16,185,129,0.3);
     }
 
     .buy-btn:disabled {
@@ -231,7 +201,6 @@
       cursor: not-allowed;
     }
 
-    /* Modal Styles */
     .modal {
       display: none;
       position: fixed;
@@ -251,7 +220,6 @@
       border-radius: 32px;
       padding: 28px;
       border: 1px solid #f59e0b;
-      box-shadow: 0 30px 40px rgba(0,0,0,0.5);
     }
 
     .pdf-item-modal {
@@ -262,13 +230,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: 0.1s;
-    }
-
-    .pdf-item-modal label {
-      margin: 0;
-      font-weight: 500;
-      cursor: pointer;
     }
 
     .btn-group {
@@ -278,48 +239,16 @@
       margin-top: 28px;
     }
 
-    .btn-cancel {
-      background: #334155;
+    .btn-cancel, .btn-add {
       padding: 12px 28px;
       border: none;
       border-radius: 40px;
       font-weight: 600;
-      color: white;
       cursor: pointer;
     }
 
-    .btn-add {
-      background: #f59e0b;
-      color: #0f172a;
-      padding: 12px 28px;
-      border: none;
-      border-radius: 40px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .btn-add:hover {
-      background: #fbbf24;
-    }
-
-    .empty-folder {
-      color: #94a3b8;
-      text-align: center;
-      padding: 20px;
-      font-style: italic;
-    }
-
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #1e2937;
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #f59e0b;
-      border-radius: 10px;
-    }
+    .btn-cancel { background: #334155; color: white; }
+    .btn-add { background: #f59e0b; color: #0f172a; }
   </style>
 </head>
 <body>
@@ -364,12 +293,11 @@
     💰 Total: ₹0 (0 PDFs)
   </div>
 
-  <button class="buy-btn" id="buyBtn" disabled>
+  <button class="buy-btn" id="buyBtn" onclick="initiatePayment()" disabled>
     🔐 Secure Payment with Razorpay
   </button>
 </div>
 
-<!-- Modal for selecting PDFs inside subject -->
 <div id="materialModal" class="modal">
   <div class="modal-content">
     <h2 id="modalSubjectTitle" style="text-align:center; margin-bottom:20px; color:#facc15;"></h2>
@@ -382,10 +310,7 @@
 </div>
 
 <script>
-  // ------------------------------------------------
-  // ACCURATE KSLU BA LL.B SYLLABUS (10 semesters)
-  // ------------------------------------------------
-  const semesterData = {
+  const semesterData = { /* your existing semesterData object remains the same */ 
     "1": { subjects: ["Legal Methods", "Law of Torts", "Contract Law - I", "Constitutional Law - I", "Family Law - I (Hindu Law)"] },
     "2": { subjects: ["Special Contract", "Constitutional Law - II", "Criminal Law (BNS/IPC)", "Property Law", "Company Law"] },
     "3": { subjects: ["Administrative Law", "Contract Law - II", "Family Law - II", "Labour Law - I", "Jurisprudence"] },
@@ -398,7 +323,6 @@
     "10": { subjects: ["Law of Evidence (BSA)", "Comparative Constitutions", "White Collar Crimes", "Private International Law", "Moot Court & Internship"] }
   };
 
-  // PDF Types with consistent ₹49 each
   const PDF_TEMPLATES = [
     { name: "📄 Detailed Notes", price: 49 },
     { name: "⚖️ Important Cases", price: 49 },
@@ -407,122 +331,75 @@
     { name: "📊 Quick Summary Charts", price: 49 }
   ];
 
-  // Global selected items array
-  let selectedPDFs = [];   // each object: { subject, pdfName, price }
+  let selectedPDFs = [];
+  let currentSubjectForModal = "";
 
-  // DOM elements
   const semesterSelect = document.getElementById("semesterSelect");
-  const subjectsContainerDiv = document.getElementById("subjectsContainer");
+  const subjectsContainer = document.getElementById("subjectsContainer");
   const subjectsGrid = document.getElementById("subjectsGrid");
   const folderSection = document.getElementById("folderSection");
   const selectedMaterialsDiv = document.getElementById("selectedMaterials");
   const totalBox = document.getElementById("totalBox");
   const buyBtn = document.getElementById("buyBtn");
-
-  // Modal elements
   const modal = document.getElementById("materialModal");
   const modalSubjectTitle = document.getElementById("modalSubjectTitle");
   const modalMaterialsList = document.getElementById("modalMaterialsList");
 
-  // currently active subject (when modal opened)
-  let currentSubjectForModal = "";
-
-  // Helper: Render the selected materials and update total
   function renderSelectedAndTotal() {
-    if (!selectedMaterialsDiv) return;
-
     if (selectedPDFs.length === 0) {
-      selectedMaterialsDiv.innerHTML = `<div class="empty-folder">✨ No notes added yet. Click on any subject to add PDFs.</div>`;
+      selectedMaterialsDiv.innerHTML = `<div class="empty-folder">✨ No notes added yet. Click on any subject.</div>`;
     } else {
       selectedMaterialsDiv.innerHTML = "";
       selectedPDFs.forEach((item, idx) => {
         const div = document.createElement("div");
         div.className = "pdf-item-mini";
         div.innerHTML = `
-          <span><strong>${escapeHtml(item.subject)}</strong> — ${escapeHtml(item.pdfName)}</span>
+          <span><strong>${item.subject}</strong> — ${item.pdfName}</span>
           <span style="color:#facc15;">₹${item.price}</span>
-          <button class="remove-item" data-index="${idx}" style="background:#dc2626; border:none; border-radius:40px; padding:4px 12px; color:white; font-weight:bold; cursor:pointer;">✖</button>
+          <button onclick="removeItem(${idx})" style="background:#dc2626;color:white;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;">✕</button>
         `;
         selectedMaterialsDiv.appendChild(div);
       });
-
-      // attach remove event listeners after render
-      document.querySelectorAll(".remove-item").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-          const index = parseInt(btn.getAttribute("data-index"));
-          if (!isNaN(index) && index >= 0 && index < selectedPDFs.length) {
-            selectedPDFs.splice(index, 1);
-            renderSelectedAndTotal();
-          }
-        });
-      });
     }
 
-    const totalAmount = selectedPDFs.reduce((sum, p) => sum + p.price, 0);
-    const count = selectedPDFs.length;
-    totalBox.innerHTML = `💰 Total: ₹${totalAmount} (${count} PDF${count !== 1 ? 's' : ''} selected)`;
-    buyBtn.disabled = (count === 0);
+    const total = selectedPDFs.reduce((sum, p) => sum + p.price, 0);
+    totalBox.innerHTML = `💰 Total: ₹\( {total} ( \){selectedPDFs.length} PDFs)`;
+    buyBtn.disabled = selectedPDFs.length === 0;
   }
 
-  // simple escape to avoid XSS
-  function escapeHtml(str) {
-    return str.replace(/[&<>]/g, function(m) {
-      if (m === '&') return '&amp;';
-      if (m === '<') return '&lt;';
-      if (m === '>') return '&gt;';
-      return m;
-    });
-  }
+  window.removeItem = function(idx) {
+    selectedPDFs.splice(idx, 1);
+    renderSelectedAndTotal();
+  };
 
-  // load semester subjects
   function loadSemester() {
     const sem = semesterSelect.value;
-    if (!sem) {
-      subjectsContainerDiv.style.display = "none";
-      folderSection.style.display = "none";
-      return;
-    }
-
-    const subjectsArray = semesterData[sem]?.subjects;
-    if (!subjectsArray || subjectsArray.length === 0) {
-      subjectsGrid.innerHTML = `<div style="padding:20px; text-align:center;">⚠️ No subjects data for this semester</div>`;
-      subjectsContainerDiv.style.display = "block";
-      folderSection.style.display = "block";
-      return;
-    }
+    if (!sem) return;
 
     subjectsGrid.innerHTML = "";
-    subjectsArray.forEach(subject => {
+    semesterData[sem].subjects.forEach(subject => {
       const card = document.createElement("div");
       card.className = "subject-card";
       card.innerHTML = `<span>📘 ${subject}</span>`;
-      card.addEventListener("click", (e) => {
-        e.stopPropagation();
-        openMaterialModal(subject);
-      });
+      card.onclick = () => openMaterialModal(subject);
       subjectsGrid.appendChild(card);
     });
 
-    subjectsContainerDiv.style.display = "block";
+    subjectsContainer.style.display = "block";
     folderSection.style.display = "block";
   }
 
-  // Open modal to choose PDF variants
-  function openMaterialModal(subjectName) {
-    currentSubjectForModal = subjectName;
-    modalSubjectTitle.innerText = `📌 ${subjectName}`;
+  function openMaterialModal(subject) {
+    currentSubjectForModal = subject;
+    modalSubjectTitle.textContent = subject;
     modalMaterialsList.innerHTML = "";
 
-    // create checkboxes for each PDF template
-    PDF_TEMPLATES.forEach((template, idx) => {
+    PDF_TEMPLATES.forEach((t, i) => {
       const div = document.createElement("div");
       div.className = "pdf-item-modal";
-      const uniqueId = `pdf_${subjectName.replace(/\s/g, '')}_${idx}`;
       div.innerHTML = `
-        <div style="display:flex; align-items:center; gap:12px;">
-          <input type="checkbox" id="${uniqueId}" data-pdf-name="${template.name}" data-price="${template.price}" style="width:18px; height:18px; cursor:pointer;">
-          <label for="${uniqueId}" style="cursor:pointer;">${template.name} — <span style="color:#facc15;">₹${template.price}</span></label>
-        </div>
+        <input type="checkbox" id="pdf\( {i}" data-name=" \){t.name}" data-price="${t.price}">
+        <label for="pdf\( {i}"> \){t.name} — <span style="color:#facc15;">₹${t.price}</span></label>
       `;
       modalMaterialsList.appendChild(div);
     });
@@ -530,127 +407,61 @@
     modal.style.display = "flex";
   }
 
-  // Add selected checkboxes to global folder
   function addSelectedToFolder() {
-    const checkboxes = modalMaterialsList.querySelectorAll("input[type='checkbox']");
-    let addedCount = 0;
-    checkboxes.forEach(cb => {
-      if (cb.checked) {
-        const pdfName = cb.getAttribute("data-pdf-name");
-        const price = parseInt(cb.getAttribute("data-price"));
-        if (pdfName && !isNaN(price)) {
-          selectedPDFs.push({
-            subject: currentSubjectForModal,
-            pdfName: pdfName,
-            price: price
-          });
-          addedCount++;
-        }
-        cb.checked = false; // reset checkboxes after adding
-      }
+    const checked = modalMaterialsList.querySelectorAll("input:checked");
+    checked.forEach(cb => {
+      selectedPDFs.push({
+        subject: currentSubjectForModal,
+        pdfName: cb.dataset.name,
+        price: parseInt(cb.dataset.price)
+      });
     });
-
-    if (addedCount > 0) {
-      renderSelectedAndTotal();
-      // subtle feedback - no alert spam
-    } else {
-      // optional: small visual feedback but not intrusive
-      const tempMsg = document.createElement("div");
-      tempMsg.innerText = "⚠️ No PDF selected";
-      tempMsg.style.position = "fixed"; tempMsg.style.bottom = "20px"; tempMsg.style.left = "20px";
-      tempMsg.style.background = "#f59e0b"; tempMsg.style.color = "#0f172a"; tempMsg.style.padding = "8px 16px";
-      tempMsg.style.borderRadius = "40px"; tempMsg.style.fontWeight = "bold"; tempMsg.style.zIndex = "9999";
-      document.body.appendChild(tempMsg);
-      setTimeout(() => tempMsg.remove(), 1500);
-    }
+    renderSelectedAndTotal();
     closeModal();
   }
 
   function closeModal() {
     modal.style.display = "none";
-    currentSubjectForModal = "";
   }
 
-  // Razorpay Payment Integration (fully working with dummy/test key but expects merchant key)
-  // Note: In production, replace 'YOUR_RAZORPAY_KEY_ID' with live key. For testing you can use 'rzp_test_xxxx'
-  // To avoid runtime errors, we'll use a placeholder but provide instructions.
-  // I'll embed a valid test key pattern. For actual demo, user must replace. I'm using a test key prefix that is safe.
-  // As per razorpay docs, test keys start with rzp_test_. For this code to run payment simulation, I'll add a fallback alert if key missing.
-  let razorpayKeyId = "rzp_test_6tB0KjfQfV2k3L";  // ⚠️ Replace with your actual Razorpay Test/Live Key ID from dashboard
-  // If the above key is invalid, the payment will error but the flow is correct. The user can replace.
-
   function initiatePayment() {
-    if (selectedPDFs.length === 0) {
-      alert("Please add at least one PDF to your folder before payment.");
-      return;
-    }
+    if (selectedPDFs.length === 0) return;
 
-    const totalAmountPaise = selectedPDFs.reduce((sum, p) => sum + p.price, 0) * 100;
-    if (totalAmountPaise <= 0) return;
+    const amountPaise = selectedPDFs.reduce((sum, item) => sum + item.price, 0) * 100;
 
-    // Prepare order details
     const options = {
-      key: razorpayKeyId,
-      amount: totalAmountPaise,
+      key: "rzp_test_XXXXXXXXXXXXXXXX",   // ←←← REPLACE WITH YOUR ACTUAL RAZORPAY KEY ID
+      amount: amountPaise,
       currency: "INR",
       name: "LawNotes Live",
-      description: `KSLU BA LL.B Notes (${selectedPDFs.length} items)`,
-      image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      description: "KSLU BA LL.B Premium Notes",
       handler: function (response) {
-        // Payment success callback
-        const paymentId = response.razorpay_payment_id;
-        // Generate summary for WhatsApp
-        let itemSummary = selectedPDFs.map(p => `${p.subject} - ${p.pdfName}`).join("\n");
-        const whatsappMsg = `✅ Payment Successful!%0APayment ID: ${paymentId}%0ATotal: ₹${totalAmountPaise/100}%0ANotes Selected:%0A${encodeURIComponent(itemSummary)}%0A%0AThank you for purchasing from LawNotes Live! Your PDFs will be sent to your registered WhatsApp/email within 5 minutes.`;
-        window.open(`https://wa.me/639636872268?text=${whatsappMsg}`, '_blank');
-        alert(`✅ Payment Successful!\nPayment ID: ${paymentId}\nOur team will deliver your notes via WhatsApp shortly.`);
-        // optional: reset selection? but we keep for reference, but you may keep.
-      },
-      prefill: {
-        name: "Law Student",
-        email: "rammiewebsite@gmail.com",
-        contact: "9999999999"
-      },
-      theme: {
-        color: "#10b981"
+        const summary = selectedPDFs.map(p => `${p.subject} - ${p.pdfName}`).join("%0A");
+        const whatsappText = `✅ Payment Successful!%0APayment ID: \( {response.razorpay_payment_id}%0ATotal: ₹ \){amountPaise/100}%0A%0ASelected Notes:%0A${summary}%0A%0AThank you! Your files will be sent shortly.`;
+        window.open(`https://wa.me/639636872268?text=${whatsappText}`, '_blank');
+        alert("✅ Payment Successful! Notes summary sent to WhatsApp.");
       },
       modal: {
         ondismiss: function() {
-          console.log("Payment modal closed");
+          console.log("Payment modal closed by user");
         }
       }
     };
 
     const rzp = new Razorpay(options);
+
     rzp.on('payment.failed', function (response) {
-      alert(`❌ Payment Failed: ${response.error.description}\nPlease try again or contact support.`);
+      alert("❌ Payment Failed\nReason: " + (response.error.description || "Unknown error") + 
+            "\n\nPlease try again or contact WhatsApp support.");
+      console.error(response.error);
     });
+
     rzp.open();
   }
 
-  // Event Listeners
+  // Event listeners
   semesterSelect.addEventListener("change", loadSemester);
-  buyBtn.addEventListener("click", initiatePayment);
-
-  // Close modal on outside click (optional)
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
-
-  // Initial render for folder & total (empty)
   renderSelectedAndTotal();
-  
-  // small check for razorpay key warning (console)
-  if (razorpayKeyId === "rzp_test_6tB0KjfQfV2k3L") {
-    console.warn("⚠️ Using demo Razorpay key. Replace with your actual Razorpay Key ID for live payments. Get it from dashboard.razorpay.com");
-  }
-
-  // show folder initially if nothing selected (already shows empty)
-  // additional: if semester not selected, folder hidden but later shows
-  // After semester load folder shows fine.
 </script>
 </body>
 </html>
-```
