@@ -7,6 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <style>
     body { 
       font-family: 'Inter', system-ui, sans-serif; 
@@ -69,47 +70,6 @@
     </div>
   </section>
 
-  <!-- Payment Modal -->
-  <div id="paymentModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[9999]">
-    <div class="bg-white rounded-3xl max-w-md w-full mx-4 p-10 relative">
-      <button onclick="hideModal()" class="absolute top-5 right-5 text-3xl text-slate-400">×</button>
-      
-      <h3 class="text-2xl font-bold text-center" id="modalNoteName">Pay ₹49</h3>
-      <p class="text-emerald-600 text-5xl font-bold text-center mt-6">₹49 only</p>
-
-      <div class="mt-10 p-6 bg-slate-100 rounded-2xl text-center">
-        <p class="text-xs uppercase tracking-widest">UPI ID</p>
-        <p class="font-mono text-3xl font-bold">ammu00@ptaxis</p>
-      </div>
-
-      <div class="mt-8 grid grid-cols-3 gap-4">
-        <a href="phonepe://pay?pa=ammu00@ptaxis&pn=LawNotesLive&am=49&cu=INR" target="_blank" 
-           class="bg-[#5C2D91] text-white py-6 rounded-2xl text-center font-medium flex flex-col items-center">
-          <i class="fas fa-mobile-alt text-2xl"></i><span class="text-xs mt-1">PhonePe</span>
-        </a>
-        <a href="gpay://pay?pa=ammu00@ptaxis&pn=LawNotesLive&am=49&cu=INR" target="_blank" 
-           class="bg-[#4285F4] text-white py-6 rounded-2xl text-center font-medium flex flex-col items-center">
-          <i class="fab fa-google text-2xl"></i><span class="text-xs mt-1">GPay</span>
-        </a>
-        <a href="paytm://pay?pa=ammu00@ptaxis&pn=LawNotesLive&am=49&cu=INR" target="_blank" 
-           class="bg-[#00B9F1] text-white py-6 rounded-2xl text-center font-medium flex flex-col items-center">
-          <i class="fas fa-mobile-alt text-2xl"></i><span class="text-xs mt-1">Paytm</span>
-        </a>
-      </div>
-
-      <a href="https://wa.me/+6369572268?text=Hi%20LawNotes%20Live%2C%20I%20have%20paid%20₹49%20for%20the%20notes.%20Please%20send%20the%20download%20link." 
-         target="_blank"
-         class="mt-8 block w-full bg-[#25D366] text-white py-6 rounded-3xl text-center font-bold flex items-center justify-center gap-3">
-        <i class="fab fa-whatsapp text-2xl"></i> Send Screenshot on WhatsApp
-      </a>
-
-      <button onclick="downloadCurrent()" 
-              class="mt-6 w-full bg-emerald-600 text-white py-5 rounded-3xl font-semibold text-lg">
-        ✅ Download PDF Now
-      </button>
-    </div>
-  </div>
-
   <!-- Footer -->
   <footer class="bg-slate-900 text-slate-400 py-12 text-center text-sm">
     <p>Karnataka State Law University (KSLU) • Hubballi</p>
@@ -134,6 +94,7 @@
   };
 
   let currentFile = "";
+  let currentNoteName = "";
 
   function renderSemesters() {
     const container = document.getElementById('semesterGrid');
@@ -186,21 +147,34 @@
 
   function buyNote(filename, name) {
     currentFile = filename;
-    document.getElementById('modalNoteName').textContent = name;
-    document.getElementById('paymentModal').classList.remove('hidden');
-    document.getElementById('paymentModal').classList.add('flex');
-  }
+    currentNoteName = name;
 
-  function hideModal() {
-    document.getElementById('paymentModal').classList.add('hidden');
-    document.getElementById('paymentModal').classList.remove('flex');
-  }
+    const options = {
+      "key": "rzp_live_SdKOFjde05IIey",
+      "amount": "4900",                    // ₹49
+      "currency": "INR",
+      "name": "Law Notes Live",
+      "description": name,
+      "image": "https://lawnoteslive.github.io/logo.png", // Optional - add your logo later
+      "handler": function (response) {
+        alert("🎉 Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
+        // Auto download after success
+        setTimeout(() => {
+          window.open(`https://lawnoteslive.github.io/notes/${currentFile}`, "_blank");
+        }, 1500);
+      },
+      "prefill": {
+        "name": "",
+        "email": "",
+        "contact": ""
+      },
+      "theme": {
+        "color": "#10b981"
+      }
+    };
 
-  function downloadCurrent() {
-    if (currentFile) {
-      hideModal();
-      window.open(`https://lawnoteslive.github.io/notes/${currentFile}`, "_blank");
-    }
+    const rzp = new Razorpay(options);
+    rzp.open();
   }
 
   // Initialize
@@ -208,31 +182,3 @@
 </script>
 </body>
 </html>
-<button id="pay-button" 
-style="background:#3399cc; color:white; padding:15px 30px; font-size:18px; border:none; border-radius:8px;">
-  Pay Now - ₹500
-</button>
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-document.getElementById('pay-button').onclick = function(e) {
-    e.preventDefault();
-    
-    var options = {
-        "key": "rzp_live_SdKOFjde05IIey",   // ← Your live key (already added)
-        "amount": "50000",                  // ₹500 (change if needed)
-        "currency": "INR",
-        "name": "Law Notes Live",
-        "description": "Purchase Law Notes",
-        "handler": function (response){
-            alert("🎉 Payment Successful! ID: " + response.razorpay_payment_id);
-        }
-    };
-    var rzp1 = new Razorpay(options);
-    rzp1.open();
-}
-</script>
-<a href="https://razorpay.me/@lawnotes?amount=rZC5NMufSVtgb9QV3szYxw%3D%3D" 
-   style="background:#3399cc; color:white; padding:15px 30px; font-size:18px; border:none; border-radius:8px; display:inline-block; text-decoration:none;">
-  Pay Now - ₹49
-</a>
